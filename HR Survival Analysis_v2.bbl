@@ -1,0 +1,82 @@
+\begin{thebibliography}{12}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Allison(1995)]{allison1995}
+P.~D. Allison.
+\newblock Survival analysis using the sas system: A practical guide. cary,
+  north carolina: Sas institute, 1995.
+
+\bibitem[Carri{\'o}n et~al.(2010)Carri{\'o}n, Solano, Gamiz, and
+  Deb{\'o}n]{carrion2010}
+A.~Carri{\'o}n, H.~Solano, M.~L. Gamiz, and A.~Deb{\'o}n.
+\newblock Evaluation of the reliability of a water supply network from
+  right-censored and left-truncated break data.
+\newblock \emph{Water resources management}, 24\penalty0 (12):\penalty0
+  2917--2935, 2010.
+
+\bibitem[Cox(1972)]{cox1972}
+P.~R. Cox.
+\newblock \emph{Life Tables}.
+\newblock Wiley Online Library, 1972.
+
+\bibitem[{Federal Housing Finance Agency}(2015)]{HPI}
+{Federal Housing Finance Agency}.
+\newblock Monthly purchase-only indexes.
+\newblock
+  \url{http://www.fhfa.gov/DataTools/Downloads/Pages/House-Price-Index-Datasets.aspx},
+  2015.
+\newblock Accessed: 2015-01-30.
+
+\bibitem[Kacmar et~al.(2006)Kacmar, Andrews, Van~Rooy, Steilberg, and
+  Cerrone]{kacmar2006}
+K.~M. Kacmar, M.~C. Andrews, D.~L. Van~Rooy, R.~C. Steilberg, and S.~Cerrone.
+\newblock Sure everyone can be replaced… but at what cost? turnover as a
+  predictor of unit-level performance.
+\newblock \emph{Academy of Management Journal}, 49\penalty0 (1):\penalty0
+  133--144, 2006.
+
+\bibitem[Kleinbaum(1998)]{kleinbaum1998}
+D.~G. Kleinbaum.
+\newblock Survival analysis, a self-learning text.
+\newblock \emph{Biometrical Journal}, 40\penalty0 (1):\penalty0 107--108, 1998.
+
+\bibitem[Leonard(2001)]{leonard2001}
+B.~Leonard.
+\newblock Turnover at the top, May 2001.
+
+\bibitem[Mueller and Price(1989)]{mueller1989}
+C.~W. Mueller and J.~L. Price.
+\newblock Some consequences of turnover: A work unit analysis.
+\newblock \emph{Human Relations}, 42\penalty0 (5):\penalty0 389--402, 1989.
+
+\bibitem[{S\&P Dow Jones Indices}(2015)]{sp500}
+{S\&P Dow Jones Indices}.
+\newblock Standard and poor's (s\&p) 500 index data including dividend,
+  earnings and p/e ratio.
+\newblock \url{http://data.okfn.org/data/core/s-and-p-500}, 2015.
+\newblock Accessed: 2015-01-30.
+
+\bibitem[Staw(1980)]{staw1980}
+B.~M. Staw.
+\newblock The consequences of turnover.
+\newblock \emph{Journal of Occupational Behaviour}, pages 253--273, 1980.
+
+\bibitem[{U.S Bureau of Labor Statistics}(2015)]{unemployment}
+{U.S Bureau of Labor Statistics}.
+\newblock (seas) unemployment rate.
+\newblock \url{http://data.bls.gov/timeseries/LNS14000000}, 2015.
+\newblock Accessed: 2015-01-30.
+
+\bibitem[{Wilshire Associates}(2015)]{will5000}
+{Wilshire Associates}.
+\newblock Wilshire 5000 total market index.
+\newblock
+  \url{https://research.stlouisfed.org/fred2/series/WILL5000INDFC/downloaddata},
+  2015.
+\newblock Accessed: 2015-01-30.
+
+\end{thebibliography}

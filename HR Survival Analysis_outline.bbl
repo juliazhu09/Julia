@@ -1,0 +1,30 @@
+\begin{thebibliography}{4}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Kacmar et~al.(2006)Kacmar, Andrews, Van~Rooy, Steilberg, and
+  Cerrone]{kacmar2006}
+K.~M. Kacmar, M.~C. Andrews, D.~L. Van~Rooy, R.~C. Steilberg, and S.~Cerrone.
+\newblock Sure everyone can be replaced… but at what cost? turnover as a
+  predictor of unit-level performance.
+\newblock \emph{Academy of Management Journal}, 49\penalty0 (1):\penalty0
+  133--144, 2006.
+
+\bibitem[Leonard(2001)]{leonard2001}
+B.~Leonard.
+\newblock Turnover at the top, May 2001.
+
+\bibitem[Mueller and Price(1989)]{mueller1989}
+C.~W. Mueller and J.~L. Price.
+\newblock Some consequences of turnover: A work unit analysis.
+\newblock \emph{Human Relations}, 42\penalty0 (5):\penalty0 389--402, 1989.
+
+\bibitem[Staw(1980)]{staw1980}
+B.~M. Staw.
+\newblock The consequences of turnover.
+\newblock \emph{Journal of Occupational Behaviour}, pages 253--273, 1980.
+
+\end{thebibliography}
