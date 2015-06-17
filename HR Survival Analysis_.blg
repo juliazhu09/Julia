@@ -1,0 +1,24 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: HR Survival Analysis_.aux
+The style file: abbrvnat.bst
+Database file #1: Bib.bib
+I was expecting a `,' or a `}'---line 186 of file Bib.bib
+ : 
+ : year={2011},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+You're missing a field name---line 383 of file Bib.bib
+ : 
+ : %title={Turnover at the Top},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 393 of file Bib.bib
+ : @article{leonard2001
+ :                     ,
+I'm skipping whatever remains of this entry
+Warning--to sort, need author or key in leonard2001
+Warning--empty author in leonard2001
+Warning--empty title in leonard2001
+Warning--empty journal in leonard2001
+Warning--empty year in leonard2001
+Warning--empty year in leonard2001
+(There were 3 error messages)

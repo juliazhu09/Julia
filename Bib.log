@@ -1,0 +1,274 @@
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdftex 2015.6.11)  12 JUN 2015 12:53
+entering extended mode
+**C:/Users/xzhu8_000/Documents/GitHub/Julia/Bib.bib
+(C:/Users/xzhu8_000/Documents/GitHub/Julia/Bib.bib
+Overfull \hbox (19.21838pt too wide) in paragraph at lines 53--63
+\tenrm growth, au-thor=Batt, Rose-mary, jour-nal=Academy of man-age-ment Jour-n
+al, vol-ume=45, num-ber=3, pages=587--|
+
+\hbox(6.94444+1.94444)x469.75499, glue set - 1.0
+.\tenrm g
+.\tenrm r
+.\tenrm o
+.\kern-0.27779
+.\tenrm w
+.etc.
+
+
+Overfull \hbox (144.55205pt too wide) in paragraph at lines 64--76
+\tenrm = 42, URL=http://proxy.lib.utk.edu:90/login?url=http://search.ebscohost.
+com/login.aspx?direct=true&db=bth&AN=9386988&scope=site,|
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\tenrm =
+.\glue 3.33333 plus 1.66666 minus 1.11111
+.\tenrm 4
+.\tenrm 2
+.\tenrm ,
+.etc.
+
+
+Overfull \hbox (27.746pt too wide) in paragraph at lines 111--117
+[]\tenrm @bookbowerman2005, ti-tle=Forecasting, time se-ries, and re-gres-sion:
+ An ap-plied ap-proach, au-thor=Bowerman,|
+
+\hbox(6.94444+1.94444)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm @
+.\tenrm b
+.\kern0.27779
+.\tenrm o
+.etc.
+
+[1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
+Overfull \hbox (21.10716pt too wide) in paragraph at lines 237--247
+\tenrm Michael and Schwei-del, David A, jour-nal=Marketing Sci-ence, vol-ume=30
+, num-ber=5, pages=881--902, year=2011,|
+
+\hbox(6.94444+1.94444)x469.75499, glue set - 1.0
+.\tenrm M
+.\tenrm i
+.\tenrm c
+.\kern-0.27779
+.\tenrm h
+.etc.
+
+
+Overfull \hbox (12.99492pt too wide) in paragraph at lines 270--280
+[]\tenrm @articled1990, ti-tle=A sug-ges-tion for us-ing pow-er-ful and in-for-
+ma-tive tests of nor-mal-ity, au-thor=D'agostino,|
+
+\hbox(6.94444+1.94444)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm @
+.\tenrm a
+.\tenrm r
+.\tenrm t
+.etc.
+
+
+Overfull \hbox (2.05145pt too wide) in paragraph at lines 310--320
+[]\tenrm @articlefeeley1997, ti-tle=Predicting Em-ployee Turnover From Com-mu-n
+i-ca-tion Net-works, au-thor=Feeley,|
+
+\hbox(6.94444+1.94444)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm @
+.\tenrm a
+.\tenrm r
+.\tenrm t
+.etc.
+
+
+Overfull \hbox (10.1337pt too wide) in paragraph at lines 332--340
+[]\tenrm @articlehong2007, ti-tle=A Com-par-a-tive Test of Two Em-ployee Turnov
+er Pre-dic-tion Mod-els, au-thor=Hong,|
+
+\hbox(6.94444+1.94444)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm @
+.\tenrm a
+.\tenrm r
+.\tenrm t
+.etc.
+
+[2]
+! Undefined control sequence.
+l.451 	howpublished = {\url
+                           {http://cran.r-project.org/web/views/TimeSeries.h...
+
+? 
+Missing character: There is no â in font cmr10!
+Missing character: There is no € in font cmr10!
+Missing character: There is no ¦ in font cmr10!
+
+Overfull \hbox (10.49489pt too wide) in paragraph at lines 535--545
+[]\tenrm @articlemartin1979, ti-tle=A Con-tex-tual Model of Em-ployee Turnover 
+Iin-ten-tions, au-thor=Martin, Thomas|
+
+\hbox(6.94444+1.94444)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm @
+.\tenrm a
+.\tenrm r
+.\tenrm t
+.etc.
+
+[3]
+Overfull \hbox (18.91258pt too wide) in paragraph at lines 557--567
+[]\tenrm @articlemobley1982, ti-tle=Some unan-swered ques-tions in turnover and
+ with-drawal re-search, au-thor=Mobley,|
+
+\hbox(6.94444+1.94444)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm @
+.\tenrm a
+.\tenrm r
+.\tenrm t
+.etc.
+
+
+Overfull \hbox (8.93939pt too wide) in paragraph at lines 568--578
+\tenrm Charles W and Price, James L, jour-nal=Human Re-la-tions, vol-ume=42, nu
+m-ber=5, pages=389--402, year=1989,|
+
+\hbox(6.94444+1.94444)x469.75499, glue set - 1.0
+.\tenrm C
+.\tenrm h
+.\tenrm a
+.\tenrm r
+.\tenrm l
+.etc.
+
+! Undefined control sequence.
+l.605 	Howpublished={\url
+                         {http://stats.oecd.org/index.aspx?queryid=6617}},
+? 
+[4]
+Overfull \hbox (5.94044pt too wide) in paragraph at lines 745--753
+[]\tenrm @articleshapiro1965, ti-tle=An anal-y-sis of vari-ance test for nor-ma
+l-ity (com-plete sam-ples), au-thor=Shapiro,|
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\hbox(0.0+0.0)x20.0
+.\tenrm @
+.\tenrm a
+.\tenrm r
+.\tenrm t
+.etc.
+
+! Undefined control sequence.
+l.793 	Howpublished={\url
+                         {http://web.calstatela.edu/faculty/hwarren/a503/for...
+
+? 
+
+Overfull \hbox (2.99608pt too wide) in paragraph at lines 790--797
+\tenrm lished=http://web.calstatela.edu/faculty/hwarren/a503/forecast%20time%20
+series%20within%20Excel.htm,|
+
+\hbox(7.5+2.5)x469.75499
+.\tenrm l
+.\tenrm i
+.\tenrm s
+.\tenrm h
+.\tenrm e
+.etc.
+
+
+Overfull \hbox (20.49606pt too wide) in paragraph at lines 821--831
+\tenrm Pe-ter R, jour-nal=Management Sci-ence, vol-ume=6, num-ber=3, pages=324-
+-342, year=1960, pub-lisher=INFORMS|
+
+\hbox(6.94444+1.94444)x469.75499, glue set - 1.0
+.\tenrm P
+.\kern-0.27779
+.\tenrm e
+.\discretionary
+..\tenrm -
+.\tenrm t
+.etc.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 821--831
+
+
+\hbox(0.0+0.0)x469.75499
+.\glue(\rightskip) 0.0
+
+
+Overfull \hbox (3.67557pt too wide) in paragraph at lines 854--863
+\tenrm thor=Zhang, G Pe-ter, jour-nal=Neurocomputing, vol-ume=50, pages=159--17
+5, year=2003, pub-lisher=Elsevier|
+
+\hbox(6.94444+1.94444)x469.75499, glue set - 1.0
+.\tenrm t
+.\tenrm h
+.\tenrm o
+.\tenrm r
+.\tenrm =
+.etc.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 854--863
+
+
+\hbox(0.0+0.0)x469.75499
+.\glue(\rightskip) 0.0
+
+! Undefined control sequence.
+l.871 	howpublished={\url
+                         {http://data.bls.gov/timeseries/LNS14000000}},
+? 
+! Undefined control sequence.
+l.879 	howpublished={\url
+                         {http://www.fhfa.gov/DataTools/Downloads/Pages/Hous...
+
+? 
+
+Overfull \hbox (17.4127pt too wide) in paragraph at lines 875--882
+\tenrm 2015, howpublished=http://www.fhfa.gov/DataTools/Downloads/Pages/House-P
+rice-Index-Datasets.aspx, note|
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\tenrm 2
+.\tenrm 0
+.\tenrm 1
+.\tenrm 5
+.\tenrm ,
+.etc.
+
+! Undefined control sequence.
+l.887 	howpublished={\url
+                         {http://data.okfn.org/data/core/s-and-p-500}},
+? 
+! Undefined control sequence.
+l.894 	howpublished={\url
+                         {https://research.stlouisfed.org/fred2/series/WILL5...
+
+? 
+
+Overfull \hbox (80.4406pt too wide) in paragraph at lines 883--897
+\tenrm To-tal Mar-ket In-dex, year = 2015, how-pub-lished=https://research.stlo
+uisfed.org/fred2/series/WILL5000INDFC/downloaddata,|
+
+\hbox(7.5+2.5)x469.75499, glue set - 1.0
+.\tenrm T
+.\kern-0.83334
+.\tenrm o
+.\discretionary
+..\tenrm -
+.\tenrm t
+.etc.
+
+)
+*
+(Please type a command or say `\end')
+*\end
+[5]<C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb>
+Output written on Bib.pdf (5 pages, 46599 bytes).
+PDF statistics:
+ 22 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+
