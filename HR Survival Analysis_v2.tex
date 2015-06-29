@@ -4,6 +4,31 @@
 \usepackage[round]{natbib}
 \usepackage[left =1.0in,right=1.0in,top=1.0in,bottom=1.0in]{geometry}
 \usepackage{graphicx}
+\usepackage{nomencl}                    % produces a nomenclature
+\usepackage{float}                      % figure floats
+\usepackage{natbib}                     % this package allows you to link your references
+\usepackage{graphicx}					% graphics package
+\graphicspath{ {figures/}{figures/eps/}{figures/pdf/} }% specify the path where figures are located
+\usepackage{fancyhdr}                   % fancy headers and footers
+\usepackage{url}                        % nicely format url breaks
+\usepackage[inactive]{srcltx}		 	% necessary to use forward and inverse searching in DVI
+\usepackage{relsize}                    % font sizing hierarchy
+\usepackage{booktabs}                   % professional looking tables
+\usepackage[config, labelfont={bf}]{caption,subfig} % nice sub figures
+\usepackage{mathrsfs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{threeparttable}	%footnote at bottom
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\usepackage{multirow}				% graphics package
+\setcounter{secnumdepth}{4}                   % additional math scripts
+\usepackage{listings} 
+\usepackage{caption}
+\usepackage{color}
+\usepackage{pdflscape}
 
 
 %opening
@@ -96,7 +121,7 @@ Several questions have to be addressed by this study: Can turnover in term of re
  
  Left truncation is that the occurrence of an intermediate event prior to the event of interest appear in the sample dataset. Let $T$ denotes the time of event of interest to occur and let $X$ denotes the time an individual enters the study, that is time of truncation events occurs. Only the individuals with $T \geq X$ are observed in the study window. Left truncation in this study occurs due to no records for employees leaving the organization before November 2000 as unobserved events shown in the figure \ref{fig:1}. The left truncation leads to another bias. As shown in the figure \ref{fig:1}, the longest arrow represents a life span for an employee hired in 1950 and left in 2006. Those employees who remain in the study window increase the apparent lifetimes. The existence of truncation in the data must be taken into account in order to overcome this bias and to achieve accurate estimation of survival analysis \citep{carrion2010}. Let $t_{i0}$ denotes the start time of the ith observation, i.e., hired time or age at hired of ith employee, $x_{i}$ denotes the entry time of the ith observation, i.e., the start time of study (November 1st, 2000) or age at November 1st, 2000. The start time of the observation is maximum value between $t_{i0}$ and $x_i$, that is when $t_{i0} < x_i $, $x_i$ is taken as start time of the ith observation in order to eliminate the left truncation bias \citep{allison1995}. The number of failures in the $t_j$ is redefined for left truncation. When $x_i < t_j \le t_i$, the observation is in the risk set. When $t_{j} < x_i \le t_i$, the ith observation has not entered study yet at $t_j$ and it cannot be considered in the risk set. When $x_i \le t_i < t_j$, it indicates the ith observation whose failure time before $t_j$, and it cannot be considered in the risk set at time $t_j$ neither \citep{carrion2010}.
  
- simulation study.
+% simulation study.
 
 \subsection{Cox PH regression model}
 %   1. what is cox ph regression model.
@@ -109,7 +134,7 @@ Cox proportional hazards (PH) regression is a widely used method for estimating 
    where $x=(x_1, x_2, \ldots, x_k)$, $h_0(t)$ is the baseline hazard occurring when $x=0$, $\beta$ is the coefficients of $x$. 
 %    why not parametric. baseline cannot fit to any parametric model\\
 %    2. cox regression without/ with time dependent variable\\
-   The model provides a hazard expression at time t for an individual with a given specification of a set of explanatory variables denoted by the $x$. The Cox PH formula is the product of quantities at hazard time $t$: $h_0 (t)$ as the baseline hazard function and the exponential expression to the linear combination of $\beta_i x_i$, $x$ does not involve time $t$, so it is time-independent covariates. $x$ can also be time-dependent covariates, which named extended Cox PH regression as discussed in the section \ref{sec:coxt}. 
+   The model provides a hazard expression at time t for an individual with a given specification of a set of explanatory variables denoted by the $x$. The Cox PH formula is the product of quantities at hazard time $t$: $h_0 (t)$ as the baseline hazard function and the exponential expression to the linear combination of $\beta_i x_i$, $x$ does not involve time $t$, so it is time-independent covariates. $x$ can also be time-dependent covariates, which named extended Cox PH regression as discussed in the section \ref{sec:coxt}. The key assumption for Cox PH regression model is proportion hazards. However, Cox regression can handle non proportional hazards using time-dependent covariate or stratification.
    The Cox PH regression is "robust" and popular, because the baseline hazard function $h_0 (t)$ is an unspecified function and its estimation can closely approximate correct parametric model \citep{kleinbaum1998}. Taking the logarithm of both sides of the equation, the Cox PH model is rewritten in the equation \ref{eq:coxlog}:
    \begin{equation}
    \label{eq:coxlog}
@@ -149,7 +174,18 @@ Economic indicators is another time dependent covariates. Because economic indic
 \end{split}
 \end{equation}
 
+\subsection{Stratification model}
+%I. what is stratification model;\\
+An alternative for handling nonproportional hazards is stratification, i.e., to stratify over the categorical covariates which do not validate the proportional hazard assumption. There is a different baseline corresponding with each stratum in the stratified Cox PH model. All these strata baselines share with the same coefficients as shown in the equation \ref{eq:strata}:
+\begin{equation}
+	\label{eq:strata}
+	h(t,x,z)=h^\sigma_0(t)e^{(\sum_{i=1}^{k}\beta_ix_i)}
+\end{equation}
+where $z$ represents strata covariates, and $h^\sigma_0(t)$ is a baseline hazard based on a stratum. Note that the strata covariates cannot be the covariates in the Cox PH model.
  
+%II. how to select a stratify variable\\
+The proportion hazard assumption can be tested using Scohoenfeld residuals. The test works even if the model includes time-dependent covariates \citep{allison2010}. An alternative is to test the interaction between time and time-independent covariates in the Cox PH model. The assumption is valid if the interaction is not statistically significant ($P>0.05$). Besides, a stratified covariate is selected in this study which can improve the Cox stratified model's performance (high C statistics) after stratifying over this covariate \citep{lemke2012}.
+
 \subsection{Competing risks}
 %  what is competing risks. competing ricks can help forecasting employee retirement and voluntary quit. \\
 %  why select these two reasons to model.\\
@@ -161,9 +197,7 @@ Economic indicators is another time dependent covariates. Because economic indic
   h_j(t,x)=h_{j0}(t)e^{(\sum_{i=1}^{k}\beta_{ij}x_i)}
   \end{equation}
   where, $x_{j}$ is the covariate for a specific type of turnover. Note that the coefficient $\beta$ is the effects of the covariates may be different from different turnover types. If $\beta_{ij}$  is the same for all j, the model simplified to Cox PH model as shown in equation \ref{eq:cox}. 
-\subsection{Stratification model}
-  I. what is stratification model;\\
-  II. how to select a stratify variable\\
+
 
 \subsection{Variable selection} 
 All the covariates are putting into Cox PH regression model and selected by manually backwards selection method based on $P<0.05$.  The variable selection procedure is as follow: first, all the covariates are used to build the model. Second, remove the non-significant variable ($P>0.05$) with the largest P value, and rerun the model with the other variables. Then, repeat the second step until there is no significant variable remaining in the model. 
@@ -211,21 +245,109 @@ The logistic regression and time series moving average methods are also employed
 % 4. split data into two ways: both training and holdout, training to build the model and holdout is to validate the model, and compare the actual vs forecasting, calculated MAPE and C statistics. \\ 
 %       WAY1: training (10 years)and holdout (2 years). forecasting the total number of employee leaving the organization, compared to the actual number to calculate MAPE and C statistics. compare to logistic regression and time series methods to shown survival is better.\\
 %       WAY2: random split the data into training (2/3) and holdout (1/3), using c statistics to select one best survival model.
-  
-\subsection{Results}
-\subsubsection{Right censor and left truncation simulation results}
-\subsubsection{Retirement model without external variables}
+ \subsection{Simulation on right censor and left truncation}
+ The simulation is used to examine Cox PH model predictive performance with right censor and left truncation. The simulated lifetime data is generated based on the Weibull distribution. %The hazarld function for Weibull regression model with shape parameter $\alpha$, scale parameter $\lambda$, and covariate $X$ is shown in equation \ref{eq:weibul}, given $h_0=\alpha(\lambda)^\alpha t^{\alpha-1}$: 
+ %\begin{equation} \label{eq:weibul}
+ %\begin{split}% to allgin the equation
+ %h(t|X) & =h_0(t)exp(\beta X) \\
+ %         &=\alpha (\lambda (exp(\beta X)^{\frac{1}{\alpha}})^\alpha t^{\alpha-1} \\
+ %         &=\alpha(\tilde{\lambda} )^\alpha t^{\alpha-1}
+ %\end{split}
+ %\end{equation}
+ %where, $\tilde{\lambda}=\lambda (exp(\beta X)^{\frac{1}{\alpha}}$.
+ The simulation can be described as follows. The sample size was n=4000, with one variable $X$, named Age, which follows uniform distribution with parameter $a$ $(a=22)$ and $b$ $(b=70)$. Only one variable age is used in simulation process to make the estimation procedure simple and close to real world. The coefficient $\beta_{age}$ is taken $-0.025$ and $\beta_0=1.5$. 
+ Then, the survival time $T$ is random generated for each observation based on Weibull distribution with shape parameter $\alpha$ and scale parameter $\lambda$, where $\alpha=1.5$ and $\lambda=exp(-0.025age+\beta_0)^{\frac{1}{\alpha}}$.
+ 
+ The simulation is performed on right censoring and left truncation separately, in order to observe the effects for different bias.  
+ For right censor simulation, the start point for all the observations are set as 0, and stop point is equal to the survival time $t_i$ for ith observation where $T=(t_1, t_2, \ldots, t_n)$. After that, a survival time histogram is generated. The censor time $C$ is set as first quarter, median, third quarter, and maximum of the survival time, respectively, to get 75\%, 50\%, 25\% and 0\% censoring proportions. When the survival time $t_i$ for ith observation is not greater than the censor time ($c_i$), the stop point is survival time and censor variable $\delta_i$ is 1. When survival time $t_i$ for ith observation is greater than censor time ($c_i$), the stop point is change to censor time ($c_i$) and censor variable $\delta_i$ is  0. The start point and the stop point are dependent variable in the cox regression model. $\delta$ is censor variable. And age is predictor or covariate. All these variables are applied to cox model using R EHA package. 
+ 
+ For left truncation simulation, the start point $U$ is generated as uniform distribution with $a=0$ and $b=max(T)$ which indicates an observation start randomly from time 0 to time $max(T)$. The stop point $S$ is $U+T$. The histogram is generated for $S$. The truncation time $L$ is set as 0, first quarter, median, and third quarter of $S$, respectively, to get 0\%, 25\%, 50\%, and 75\% truncation proportions. When start point $u_i$ for ith observation is less than truncation time $l_i$, the start point is reset as truncation time $l_i$. When start point $u_i$ for ith observation is not less than truncation time $l_i$, the start point does not change ($u_i$). In left truncation, the censor variable $\delta$ for all the observations are equal 1. All these variables are also used to build Cox PH model in R EHA package. The Cox PH model is conducted using "phreg" function in eha package and using weibull distribution to estimate the baseline for both right censoring and left truncation simulation. The "phreg" function performs Cox PH model and also provides a parametric baseline hazards estimation \citep{brostrom2012}. Total predicted failure number is calculated as shown in equation \ref{eq:prob} and \ref {eq:expturnover}. The actual and forecast failure number are plotted to compare the effects on different levels of bias.
+ 
+ %accelarate model% 
+\section{Results}
+\subsection{Right censor and left truncation simulation results}
+\subsubsection{Right censoring simulation result}
+The right censoring simulation result shows Cox PH model coefficient estimate, baseline parameter estimates for Weibull distribution, and $-$log likelihood value for models with no censoring, 25\%, 50\%, and 75\% censoring proportion as shown in Table \ref{table:rightcensor}. The events in the second column of the table indicate total failure events in the dataset without including censoring, which is $events=\sum_{i=0}^{4000}{\delta_i}$ where $\delta$ is censor variable. The coefficients of age for all four models are all close to 0.025, but it is over estimates (0.026) when high proportion of censoring (75\%) in the dataset. The overestimation is also shown by the estimates of shape parameter: the estimated value (1.539) for model with 75\% censoring is greater than $\alpha=1.5$. It underestimates the shape parameters when the censoring proportion is 25\% and 50\%, respectively. The most close estimation of shape is when there is no censoring in the data. The $-$log likelihood values decrease from low percentage censoring to high percentage censoring. Because the scale parameter is generated by the formula, there is no actual value of scale parameter to compare. However, compared to the estimated value from no censoring (2.668), the model overestimates with 25\% censoring (2.779), get close with 50\% censoring (2.675) and underestimates with 75\% censoring (1.539). The estimates decrease when the percentage of censoring increases. Overall, the estimates are close to actual simulated value when the censoring proportion is close to 50\%. However, it over- or under-estimates the coefficients when the censoring proportion is 75\%. The phenomenon is also verified by plotting the actual and predicted failure number in the figure \ref{fig:7}.  The red line is the actual failure number simulated by Weibull distribution. The dark blue line is the predicted failure number for the model with 75\% censoring which is higher than all the other three lines for predicted failure number before time 3.75 and overlaid with the other three lines after 3.75. The gap between this line and the others three lines reaches the largest value around time 1. The other three lines represent the predicted failure number from the model with no censor, 25\% censoring, and 50\% censoring, respectively. They are too close to be distinguished in the figure. Therefore, the right censoring simulation shows that the Cox PH model performs well and the estimates are close to the actual values when the censoring proportion is close to 50\%, and it deteriorates when the censoring proportion is 75\%, causing the overestimation of the total failure number.
+% Table generated by Excel2LaTeX from sheet 'Sheet2'
+% Table generated by Excel2LaTeX from sheet 'Sheet1'
+\begin{table}[htbp]
+	\renewcommand{\arraystretch}{1.5}
+	\small
+	\centering
+	\caption{Right censoring simulation statistics}
+	\begin{tabular}{ccrrrc}
+		\hline
+		\multirow{2}[2]{*}{Models} & \multirow{2}[2]{*}{Events} & \multicolumn{3}{c}{Variable estimate} & \multirow{2}[2]{*}{$-$ loglikelihood} \\ \cline{3-5}
+		
+		&       & Age   & Scale & Shape &  \\\hline
+		No Censor & 4000  & \multicolumn{1}{c}{0.024} & \multicolumn{1}{c}{2.668} & \multicolumn{1}{c}{1.494} & 4127.4 \\
+		25\% Censored & 3000  & \multicolumn{1}{c}{0.025} & \multicolumn{1}{c}{2.779} & \multicolumn{1}{c}{1.480} & 3446.3 \\
+		50\% Censored & 1999  & \multicolumn{1}{c}{0.024} & \multicolumn{1}{c}{2.675} & \multicolumn{1}{c}{1.487} & 2574.1 \\
+		75\% Censored & 1000  & \multicolumn{1}{c}{0.026} & \multicolumn{1}{c}{2.643} & \multicolumn{1}{c}{1.539} & 1486.9 \\
+		\hline
+	\end{tabular}%
+	\label{table:rightcensor}%
+\end{table}%
+\begin{landscape}
+	\begin{figure}[htbp]
+		\centering
+		\includegraphics[width=9in]{Fig7}
+		\caption{Actual vs. predicted failure number with various censoring}
+		\label{fig:7}
+	\end{figure}
+\end{landscape}
+% % % % % % % % % % % % % % % % % % % % % % % % %
+% % % %Left truncation result % % % % % % % % % % 
+% % % % % % % % % % % % % % % % % % % % % % % % %
+\subsubsection{Left truncation simulation results}
+The left truncation bias simulation statistics for testing Cox PH model function shows coefficient estimate for age, baseline parameter estimates for scale and shape by Weibull distribution, $-$log likelihood value, and total predicted failure number for models with no left truncation, 25\%, 50\%, and 75\% left truncation proportion as shown in Table \ref{tab:lefttruncation}. The coefficients of age for all four models are all close to 0.025, even when high proportion of left truncation (75\%) in the dataset. However, the scale and shape parameter are over estimated, when the left truncation proportion is high: the estimated values for scale are 2.656, 2.620, 2.664, and 2.748 for no left truncation, 25\%, 50\%, and 75\%, respectively. The estimated values for shape are 1.483, 1.501, 1.504, and 1.539 for no left truncation, 25\%, 50\%, and 75\%, respectively. The estimation of the scale and shape for Weibull  distribution is close to simulation value when the left truncation portion is 25\% and 50\%. The model overestimates the parameters when left truncation proportion is 75\%, which is greater than $\alpha=1.5$. The last column is the summation of predicted failure number at each time point. They are close to actual failure number (4005, 2992) when left truncation proportion is 0\% and 25\%, respectively. When left truncation reaches to 50\% and 75\%, the failure number are around 50 more than the actual (2051 and 1059). However, the predicted failure number is smoothed and close to the actual one as shown in the figure \ref{fig:lefttruncation}. It is overestimates at the beginning of the time line when left truncation proportion is 50\% and 75\% as shown in figure \ref{fig:left50} and \ref{fig:left75}, where the dash lines are both higher than the solid lines at the beginning. 
+Therefore, the left truncation simulation test shows that the Cox PH model performs well when the censoring proportion is less than 50\%, and it deteriorates when the truncation proportion goes high causing the overestimation of the total failure number.
+\begin{table}[h!]
+	\renewcommand{\arraystretch}{1.5}
+	\small
+	\centering
+	\caption{Left truncation simulation statistics}
+	\begin{tabular}{ccccccc}
+		\hline
+		\multirow{2}[4]{*}{Model} & \multirow{2}[4]{*}{Events} & \multicolumn{3}{c}{Variable Estimates} & \multirow{2}{3cm}{$-$ log.Likelihood} & \multirow{2}{3cm}{Predicted Total Failure No.}  \\
+		\cline{3-5} % \cline{i-j} partial horizontal line beginning in column i and ending in column j		
+		&       & Age   & Scale & Shape &  &\\				
+		\hline
+		No left Truncation & 4000  & 0.024 & 2.656 & 1.483 & 4167.8  &4005\\
+		25\%  left Truncation & 3000  & 0.023 & 2.620  & 1.501 & 3041.2 & 2992\\
+		50\%  left Truncation & 2000  & 0.023 & 2.664 & 1.504 & 1990.8 & 2051\\
+		75\%  left Truncation & 1000  & 0.025 & 2.748 & 1.539 & 885.55 &2059\\
+		\hline
+	\end{tabular}%
+	\label{tab:lefttruncation}%
+\end{table}%
+%negative loglikelihood value can be dropped. does not make sense.
+
+\begin{figure}[h!]
+	\centering
+	\subfloat[No left truncation]{\label{fig:leftno}\includegraphics[width=2.75in]{notruncation.png}}
+	\quad
+	\subfloat[25\% left truncation]{\label{fig:left25}\includegraphics[width=2.75in]{25color.png}}
+	\quad
+	\subfloat[50\% left truncation]{\label{fig:left50}\includegraphics[width=2.75in]{50color.png}}
+	\quad
+	\subfloat[75\% left truncation]{\label{fig:left75}\includegraphics[width=2.75in]{75color.png}}
+	\caption{Left truncation simulation results: actual vs. predicted failure number}
+	\label{fig:lefttruncation}
+\end{figure}
+
+\subsection{Retirement model without external variables}
    1. four survival model have been generated for comparison. 
    2. significant variables.
    3. stratfication variable deterimation.
    4. model comparison based on validation way 1 and way2 (one table show all the models) 
-\subsubsection{Retirement model with external variables}
+\subsection{Retirement model with external variables}
      best model and tested which variable does significantly impact on retirement.
-\subsubsection{Voluntary quit model without external variables}   
+\subsection{Voluntary quit model without external variables}   
      I. dependent variable are YCSH, because age is not able to predict well.
      II. shorten the length of risk set.
      iii. model comparison. (survival model, time seris model, and logsitic regression model)
-\subsubsection{Voluntary quit model with external variables}
+\subsection{Voluntary quit model with external variables}
     i. tested which variable does significantly impact on employee voluntary quit.
      
 
