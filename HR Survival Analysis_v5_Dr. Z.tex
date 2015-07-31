@@ -249,16 +249,16 @@ The logistic regression and time series moving average methods are also employed
  
  In order to understand the performance and efficiency of the Cox PH model in right censored and left truncated data we perform a simulation study.
  
- Generated $n = 4000$ observations  from a a Weibull regression model  with one covariate which we referred to as age.  
+ Generated $n =100, 200, 500, 1000, 2000, \text{and } 4000$ observations  from a a Weibull regression model  with one covariate which we referred to as age.  
  
  Age is uniformly distributed from 22 to 70 years of age, which is chosen to mimic the actual distribution of workers ages in our sample.
  
- In the regresion model, the coefficients for $\beta_age = -.025$ (Why?) and the coefficient for $\beta_0 = 1.5$. 
+ In the regression model, the coefficients for $\beta_age = -.025$ (Why?) and the coefficient for $\beta_0 = 1.5$. 
  
  The survival times $T_i$ are randomly generated from a Weibull distribution with shape parameter $\alpha$ and scale parameter $\lambda$, where $\alpha=1.5$ and $\lambda=exp(-0.025age+\beta_0)^{\frac{1}{\alpha}}$.
  
  
- The simulation is used to examine Cox PH model predictive performance with right censor and left truncation. The simulated lifetime data is generated based on the Weibull distribution. %The hazarld function for Weibull regression model with shape parameter $\alpha$, scale parameter $\lambda$, and covariate $X$ is shown in equation \ref{eq:weibul}, given $h_0=\alpha(\lambda)^\alpha t^{\alpha-1}$:
+% The simulation is used to examine Cox PH model predictive performance with right censor and left truncation. The simulated lifetime data is generated based on the Weibull distribution. %The hazarld function for Weibull regression model with shape parameter $\alpha$, scale parameter $\lambda$, and covariate $X$ is shown in equation \ref{eq:weibul}, given $h_0=\alpha(\lambda)^\alpha t^{\alpha-1}$:
  %\begin{equation} \label{eq:weibul}
  %\begin{split}% to allgin the equation
  %h(t|X) & =h_0(t)exp(\beta X) \\
@@ -267,8 +267,8 @@ The logistic regression and time series moving average methods are also employed
  %\end{split}
  %\end{equation}
  %where, $\tilde{\lambda}=\lambda (exp(\beta X)^{\frac{1}{\alpha}}$.
- The simulation can be described as follows. The sample size was n=4000, with one variable $X$, named Age, which follows uniform distribution with parameter $a$ $(a=22)$ and $b$ $(b=70)$. Only one variable age is used in simulation process to make the estimation procedure simple and close to real world. The coefficient $\beta_{age}$ is taken $-0.025$ and $\beta_0=1.5$.
- Then, the survival time $T$ is random generated for each observation based on Weibull distribution with shape parameter $\alpha$ and scale parameter $\lambda$, where $\alpha=1.5$ and $\lambda=exp(-0.025age+\beta_0)^{\frac{1}{\alpha}}$.
+% The simulation can be described as follows. The sample size was n=100, 300, 500, 1000, and 4000, with one variable $X$, named Age, which follows uniform distribution with parameter $a$ $(a=22)$ and $b$ $(b=70)$. Only one variable age is used in simulation process to make the estimation procedure simple and close to real world. The coefficient $\beta_{age}$ is taken $-0.025$ and $\beta_0=1.5$.
+%Then, the survival time $T$ is random generated for each observation based on Weibull distribution with shape parameter $\alpha$ and scale parameter $\lambda$, where $\alpha=1.5$ and $\lambda=exp(-0.025age+\beta_0)^{\frac{1}{\alpha}}$.
 
  The simulation is performed on right censoring and left truncation separately, in order to observe the effects for different bias.
  For right censor simulation, the start point for all the observations are set as 0, and stop point is equal to the survival time $t_i$ for ith observation where $T=(t_1, t_2, \ldots, t_n)$. After that, a survival time histogram is generated. The censor time $C$ is set as first quarter, median, third quarter, and maximum of the survival time, respectively, to get 75\%, 50\%, 25\% and 0\% censoring proportions. When the survival time $t_i$ for ith observation is not greater than the censor time ($c_i$), the stop point is survival time and censor variable $\delta_i$ is 1. When survival time $t_i$ for ith observation is greater than censor time ($c_i$), the stop point is change to censor time ($c_i$) and censor variable $\delta_i$ is  0. The start point and the stop point are dependent variable in the cox regression model. $\delta$ is censor variable. And age is predictor or covariate. All these variables are applied to cox model using R EHA package.
@@ -278,7 +278,7 @@ The logistic regression and time series moving average methods are also employed
  %accelarate model%
 \section{Results}
 \subsection{Right censor and left truncation simulation results}
-The right censoring simulation result shows the average values of Cox PH model coefficient estimate and baseline parameter estimates for Weibull distribution using PHreg from R eha package based on 100 replication with no censoring, 25\%, 50\%, and 75\% censoring proportion models as shown in the left part of Table \ref{tab:rightcensor}. The events in the second column of the table is the actual total failure events in the dataset without including censoring, which is $events=\sum_{i=0}^{n}{\delta_i}$ where $\delta$ is censor variable, and $n=100, 200, 500, 1000, 2000, \text{and } 4000$.  The model overestimates the coefficients of age, $\lambda$, and $\alpha$, when the data has high proportion of censoring and total number of events is less. For example, when 75\% of the data are censored with only 25 events, the estimates for three parameters are 0.028, 4.043, and 1.564, respectively, which are the highest among all the estimates. The estimates of age and $alpha$ tend to approach to the true value, as the event number increasing. 
+The right censoring simulation result is shown by the average values of Cox PH model coefficient estimate and baseline parameter estimates for Weibull distribution using PHreg from R eha package based on 100 replication with no censoring, 25\%, 50\%, and 75\% censoring proportion models as shown in the left part of Table \ref{tab:rightcensor}. The events in the second column of the table is the actual total failure events in the dataset without including censoring, which is $events=\sum_{i=0}^{n}{\delta_i}$ where $\delta$ is censor variable, and $n=100, 200, 500, 1000, 2000, \text{and } 4000$. The simulation results shows censor proportion and the number of events are two influential factors for the coefficient estimation. The model overestimates the coefficients of age, $\lambda$, and $\alpha$, when the data has high proportion of censoring and total number of events is less than 200. For example, when 75\% of the data are censored with only 25 events, the estimates for three parameters are 0.028, 4.043, and 1.564, respectively, which are the highest among all the estimates. The estimates of age and $alpha$ tend to approach to the true value, as the event number increasing. 
 The predicted events in the sixth column is the total predicted failure number calculated based on the coefficient estimates and the non-parametric baseline from Cox PH models to calculate the data with all known events (no censoring). The predicted events using censoring models are all lower than the actual total failure number as shown in figure \ref{fig:7}, but close to the events number after censoring. For example, the predicted events are 24.84 when using the estimates of age and the baseline from Cox PH model with 75\% censoring to calculate the data with 100 events, which is close to 25. The model cannot predict more than 25 events, because the baseline is lack of information for the events after censored time. All the observations start at time 0 in the right censored study, thus only the observation with long life time are censored. As a result, the baseline does not include hazards or survival probability information for the long life time observation, i.e. there is no failure probability for long life time observation. Therefore, a baseline can be highly variable in the extremes leading to poor predictions. 
 
 % Table generated by Excel2LaTeX from sheet 'Sheet2'
@@ -298,29 +298,29 @@ The predicted events in the sixth column is the total predicted failure number c
 		\multicolumn{1}{c}{} & \multicolumn{1}{c}{} & Age   & \lambda & \alpha & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & Age   & \lambda & \alpha & \multicolumn{1}{c}{} \\
 		\hline
 				0\%   & 100   & 0.026 & 2.931 & 1.509 & 97.42 & 0\%   & 100 & 0.027 & 2.865 & 1.534 & 96.60 \\
-				25\%  & 75    & 0.027 & 2.962 & 1.527 & 74.31 & 25\%  & 75 & 0.027 & 2.917 & 1.546 & 72.86 \\
-				50\%  & 50    & 0.028 & 3.237 & 1.530 & 49.66 & 50\%  & 50 & 0.027 & 2.899 & 1.577 & 47.32 \\
-				75\%  & 25    & 0.028 & 4.043 & 1.564 & 24.84 & 75\%  & 25 & 0.029 & 3.280 & 1.757 & 21.75 \\
+				25\%  & 100    & 0.027 & 2.962 & 1.527 & 74.31 & 25\%  & 75 & 0.027 & 2.917 & 1.546 & 72.86 \\
+				50\%  & 100    & 0.028 & 3.237 & 1.530 & 49.66 & 50\%  & 50 & 0.027 & 2.899 & 1.577 & 47.32 \\
+				75\%  & 100    & 0.028 & 4.043 & 1.564 & 24.84 & 75\%  & 25 & 0.029 & 3.280 & 1.757 & 21.75 \\
 				0\%   & 200   & 0.026 & 2.841 & 1.508 & 197.23 & 0\%   & 200 & 0.025 & 2.777 & 1.506 & 196.13 \\
-				25\%  & 150   & 0.026 & 2.856 & 1.513 & 149.34 & 25\%  & 150   & 0.025 & 2.756 & 1.515 & 147.97 \\
-				50\%  & 100   & 0.026 & 2.925 & 1.527 & 99.68 & 50\%  & 100   & 0.025 & 2.825 & 1.532 & 97.44 \\
-				75\%  & 50    & 0.026 & 3.167 & 1.540 & 49.86 & 75\%  & 50    & 0.026 & 2.927 & 1.572 & 47.17 \\
+				25\%  & 200   & 0.026 & 2.856 & 1.513 & 149.34 & 25\%  & 150   & 0.025 & 2.756 & 1.515 & 147.97 \\
+				50\%  & 200   & 0.026 & 2.925 & 1.527 & 99.68 & 50\%  & 100   & 0.025 & 2.825 & 1.532 & 97.44 \\
+				75\%  & 200    & 0.026 & 3.167 & 1.540 & 49.86 & 75\%  & 50    & 0.026 & 2.927 & 1.572 & 47.17 \\
 				0\%   & 500   & 0.025 & 2.731 & 1.500 & 496.77 & 0\%   & 500 & 0.025 & 2.732 & 1.509 & 494.78 \\
-				25\%  & 375   & 0.025 & 2.718 & 1.508 & 374.31 & 25\%  & 3756 & 0.025 & 2.737 & 1.514 & 373.42 \\
-				50\%  & 250   & 0.025 & 2.744 & 1.514 & 249.65 & 50\%  & 250 & 0.026 & 2.778 & 1.514 & 247.70 \\
-				75\%  & 125   & 0.025 & 2.787 & 1.525 & 124.89 & 75\%  & 125 & 0.026 & 2.835 & 1.547 & 124.15 \\
+				25\%  & 500   & 0.025 & 2.718 & 1.508 & 374.31 & 25\%  & 375 & 0.025 & 2.737 & 1.514 & 373.42 \\
+				50\%  & 500   & 0.025 & 2.744 & 1.514 & 249.65 & 50\%  & 250 & 0.026 & 2.778 & 1.514 & 247.70 \\
+				75\%  & 500   & 0.025 & 2.787 & 1.525 & 124.89 & 75\%  & 125 & 0.026 & 2.835 & 1.547 & 124.15 \\
 				0\%   & 1000  & 0.025 & 2.748 & 1.509 & 996.41 & 0\%   & 1000 & 0.025 & 2.710 & 1.504 & 993.77 \\
-				25\%  & 750   & 0.025 & 2.747 & 1.512 & 749.23 & 25\%  & 750 & 0.025 & 2.709 & 1.504 & 748.94 \\
-				50\%  & 500   & 0.025 & 2.748 & 1.514 & 499.61 & 50\%  & 500 & 0.025 & 2.715 & 1.506 & 503.37 \\
-				75\%  & 250   & 0.026 & 2.844 & 1.509 & 249.80 & 75\%  & 250 & 0.025 & 2.694 & 1.524 & 250.93 \\
+				25\%  & 1000   & 0.025 & 2.747 & 1.512 & 749.23 & 25\%  & 750 & 0.025 & 2.709 & 1.504 & 748.94 \\
+				50\%  & 1000   & 0.025 & 2.748 & 1.514 & 499.61 & 50\%  & 500 & 0.025 & 2.715 & 1.506 & 503.37 \\
+				75\%  & 1000   & 0.026 & 2.844 & 1.509 & 249.80 & 75\%  & 250 & 0.025 & 2.694 & 1.524 & 250.93 \\
 				0\%   & 2000  & 0.025 & 2.714 & 1.502 & 1996.19 & 0\%   & 2000 & 0.025 & 2.740 & 1.503 & 1993.65 \\
-				25\%  & 1500  & 0.025 & 2.713 & 1.503 & 1499.29 & 25\%  & 1500 & 0.025 & 2.731 & 1.502 & 1507.94 \\
-				50\%  & 1000  & 0.025 & 2.742 & 1.500 & 999.68 & 50\%  & 1000  & 0.025 & 2.724 & 1.503 & 1012.37 \\
-				75\%  & 500   & 0.025 & 2.733 & 1.502 & 499.89 & 75\%  & 500 & 0.025 & 2.718 & 1.508 & 512.30 \\
+				25\%  & 2000  & 0.025 & 2.713 & 1.503 & 1499.29 & 25\%  & 1500 & 0.025 & 2.731 & 1.502 & 1507.94 \\
+				50\%  & 2000  & 0.025 & 2.742 & 1.500 & 999.68 & 50\%  & 1000  & 0.025 & 2.724 & 1.503 & 1012.37 \\
+				75\%  & 2000   & 0.025 & 2.733 & 1.502 & 499.89 & 75\%  & 500 & 0.025 & 2.718 & 1.508 & 512.30 \\
 				0\%   & 4000  & 0.025 & 2.719 & 1.504 & 3995.80 & 0\%   & 4000 & 0.025 & 2.720 & 1.500 & 3988.90 \\
-				25\%  & 3000  & 0.025 & 2.718 & 1.505 & 2998.86 & 25\%  & 3000 & 0.025 & 2.722 & 1.501 & 3014.31 \\
-				50\%  & 2000  & 0.025 & 2.724 & 1.503 & 1999.52 & 50\%  & 2000 & 0.025 & 2.710 & 1.502 & 2032.03 \\
-				75\%  & 1000  & 0.025 & 2.729 & 1.513 & 999.86 & 75\%  & 1000 & 0.025 & 2.703 & 1.503 & 1028.39 \\
+				25\%  & 4000  & 0.025 & 2.718 & 1.505 & 2998.86 & 25\%  & 3000 & 0.025 & 2.722 & 1.501 & 3014.31 \\
+				50\%  & 4000  & 0.025 & 2.724 & 1.503 & 1999.52 & 50\%  & 2000 & 0.025 & 2.710 & 1.502 & 2032.03 \\
+				75\%  & 4000  & 0.025 & 2.729 & 1.513 & 999.86 & 75\%  & 1000 & 0.025 & 2.703 & 1.503 & 1028.39 \\
 				\bottomrule
 	\end{tabular}%
 	\label{tab:rightcensor}%
@@ -351,10 +351,10 @@ This study shows the inaccuracy estimation of the baseline lead to poor predicti
 % % % % % % % % % % % % % % % % % % % % % % % % %
 % % % %Left truncation result % % % % % % % % % %
 % % % % % % % % % % % % % % % % % % % % % % % % %
-The left truncation bias simulation statistics for testing Cox PH model function shows the average values of coefficient estimate for age, baseline parameter estimates for scale and shape by Weibull distribution, and total predicted failure number based on 100 replications as shown in Table \ref{tab:rightcensor}. The coefficients of age for all four models are all close to 0.025, even when high proportion of left truncation (75\%) in the dataset. The scale and shape parameter are also close for different portion of left truncation: the estimated values for scale are close to 2.7, and the estimated values for shape are close to 1.5, which are close to the true simulation value. However, The model overestimates the total failure number when left truncation proportion increasing. The last column is the summation of predicted failure number at a left truncation proportion. They are close to actual failure number (3993) when left truncation proportion is 0\%, which is 7 different. When left truncation reaches to 25\%, 50\%, and 75\%, the difference between the actual and predicted events increases from 16 to 34. 
 
-However, the predicted failure number is smoothed and close to the actual one as shown in the figure \ref{fig:lefttruncation}. It is overestimates at the beginning of the time line when left truncation proportion is 50\% and 75\% as shown in figure \ref{fig:left50} and \ref{fig:left75}, where the dash lines are both higher than the solid lines at the beginning.
-Therefore, the left truncation simulation test shows that the Cox PH model performs well when the censoring proportion is less than 50\%, and it deteriorates when the truncation proportion goes high causing the overestimation of the total failure number.
+Table \ref{tab:rightcensor} right part shows the results of the left truncation bias simulation statistics for testing Cox PH model function using R eha package. All the values shown are the average values for coefficient estimates for age, baseline parameter estimates for scale and shape by Weibull distribution, and total predicted failure number based on 100 replications. Similar as the right censor simulation result, left truncation proportion and the number of events are two factors for coefficients estimation. As table \ref{tab:rightcensor} shown, the coefficients are overestimated when the left truncation proportion is about 75\% and the events is less then 1000. The coefficients are all overestimated when the number of events is less than 200. For the predicted events, it underestimates when the number of events is less than 1000, but it over predicts afterwards when the data has left truncation. However, if the number of events is high, it can offset (reduce) the left truncation effects. For example, the estimates for age and $\apha$ are all close to true simulation value, and predicted events are slightly overestimated (about 3\% error rate), when events number is 1000 with 75\% truncation proportion. The predicted events are smoothed and close to the actual one as shown in the figure \ref{fig:lefttruncation}, which is an example of total 4000 events simulated with various proportion of left truncation. It is overestimates at the beginning of the time line when left truncation proportion is 50\% and 75\% as shown in figure \ref{fig:left50} and \ref{fig:left75}, where the dash lines are both higher than the solid lines at the beginning. 
+
+Therefore, the simulation test shows that the Cox PH model can accurately estimates the coefficients when events number is more than 1000 even with high proportion of censor and left truncation. The baseline is another key factor to predict the failure number. The prediction will be accurate if the parametric distribution of the baseline is known. Otherwise, a wrong baseline can also deterious the prediction. Compared to parametric baseline, a non-parametric baseline is more robust. However, it still needs high number of events to get a smooth baseline to predict accurately.  
 
 
 \begin{figure}[h!]
@@ -380,7 +380,6 @@ Therefore, the left truncation simulation test shows that the Cox PH model perfo
 % 5) Figures and discussion of coefficients and baseline estimates and impact on predictions.
 % 6) Problems with PH in predictive modelling.  Truncation needs PH (is there another method)
 %
-
 \subsection{Retirement model without external variables}
    1. four survival model have been generated for comparison.
    2. significant variables.
