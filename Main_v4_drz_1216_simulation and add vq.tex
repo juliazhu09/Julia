@@ -158,15 +158,15 @@ Beyond employee level information, we also investigate the potential impact of e
 \section{Model Development and Evaluation}
 This study aims to develop accurate predictive models of retirement and quitting behavior. The model will be used to address several key questions:
 \begin{enumerate}
-\item How accurately can retirement(quitting) be predicted? 
-\item What factors indicate an individual is more likely to retire(quit)? 
-\item Which external economic factors are most predictive of retirement or quitting? 
+\item How accurately can retirement(quitting) be predicted?
+\item What factors indicate an individual is more likely to retire(quit)?
+\item Which external economic factors are most predictive of retirement or quitting?
 \item What is the magnitude  of impact of an Early Retirement Incentive Programs (ERIP)?
 \item How do the tenure and age impact retirement?
 \item How many employees will retire(quit) next year by occupational category and division?
 \end{enumerate}
 
-%In developing a model for this we must account for the presence of biases due to missing %data. both right censoring and left truncation existing in the dataset. 
+%In developing a model for this we must account for the presence of biases due to missing %data. both right censoring and left truncation existing in the dataset.
 
  Survival or lifetime data analysis is methodology that is used to study the distribution of time that it takes for a subject from a population to experience an event such as mechanical failure, death or recovery. Survival regression models relate aspects of the lifetime distribution such as the hazard function to a linear function of explanatory variables.  Statistical survival models are often separated into two categories: parametric survival models and semi-parametric proportional hazards (PH) models or Cox models. In this study, the Cox PH model is employed to build predictive models of retirement and quitting, to estimate a employees' baseline hazard of retirement or quitting, and to identify significant factors that may impact turnover. The parametric models are not appropriate for this study for several reasons. First, it is unlikely that hazards for events like retirement would match common parametric distributions such as weibull or log-normal since the risk should stay close to zero until the usual range of retirement at which time it spikes and then drops quickly again.  Furthermore, as mentioned in the introduction, the sampling scheme used in this data involved several biases, which can most easily be adjusted for using the Cox PH model. A third advantage of the cox model is the ability to incorporate time dependent covariates in the model. In the case of the current model these are required to incorporate the impact of a 2008 early retirement intervention promotion (ERIP) in the organization, as well as examining the effects of two retirement key variables and outside economic indicators. A special version of the model known as the competing risks analysis is applied for modeling a population which can experience two types of events, in this case employee retirement and voluntary quitting. In addition to the model fitting, a simulation study is performed to examine the impact of data bias on the forecasting capability of Cox proportional hazard model.
  %There are several reasons for employee leaving the organization: retirement, voluntary quit, layoff, transferring, leave of absence, or death. In this study, retirement and voluntary quit are selected and modelled respectively using competing risks analysis.
@@ -174,7 +174,7 @@ This study aims to develop accurate predictive models of retirement and quitting
  % what is right censor, how to deal with right censor\\
  % what is left truncation how to deal with left truncation\\
  Right censoring and left truncation are both commonly observed forms of missing data in survival analysis data sets. In the current, the study window is from November 2000 to December 2012 as shown in the figure \ref{fig:1}.  Anyone that was an active employee during this period has their complete record included in the dataset whether or not their tenure began or ended outside of the study window.  Conversely, those employees whose tenure ended before the study window or for whom the start date occurred after the study window ended are not included in the study.
- 
+
  \begin{figure}[htbp]
  	\centering
  	\includegraphics[width=3.5in]{fig1.png}
@@ -182,7 +182,7 @@ This study aims to develop accurate predictive models of retirement and quitting
  	\label{fig:1}
  \end{figure}
   Let $T_i$ be the time at which the $i^th$ individual experiences the event of interest and let $C_i$ denote the final time at which the individual is observed. An observation is called {\it right censored} if $T_i> C_i$, indicating that actual event time for the individual  is not recorded but is only known to be greater than $C_i$. Thus, employees that are currently active at the end of the observation window are right censored. These right censored observations do contain information, although incomplete, about a subjects lifetime and require special treatment in order to draw proper inference.
- 
+
  \begin{align*}
  	\delta_i&=
  	\begin{cases}
@@ -192,8 +192,8 @@ This study aims to develop accurate predictive models of retirement and quitting
  \end{align*}
  where, $i$ denotes the ith observation, and the failure time of event for ith observation is minimum time between $t_i$ and $c_i$, i.e., $min(t_i, c_i)$, that is when $ c_i <t_i $, $c_i$ is taken as end time of the ith observation in order to do next  analysis.
 
- Left truncation is another interesting artifact of the window sampling scheme. Let $T$ again denote the time that the event of interest occurs and let $X$ denotes the time an individual enters the study. Only the individuals with $T \geq X$ are observed in the study window.  Those individuals with $T \leq X$ are referred to as left truncated because they cannot be included in this study based on the sampling window as shown in the figure \ref{fig:1}. Left truncation exaggerates the number of longer life individuals leading to a biased sample. To see this consider Figure \ref{fig:1}. The longest arrow represents a life span for an employee hired in 1950 and retiring in 2006. While this employee and any in his cohort that are still active are in the sample, others that began in 1950 but retired in 1998, for example, are not. Hence, because of the sampling window approach the longer someone continues working, the more likely they are to appear in our dataset.  We therefore see an overabundance of longer lived individuals in our data.  The presence of left truncation and the associated bias in the data must be taken into account to achieve accurate estimation of survival analysis \citep{carrion2010}. 
- 
+ Left truncation is another interesting artifact of the window sampling scheme. Let $T$ again denote the time that the event of interest occurs and let $X$ denotes the time an individual enters the study. Only the individuals with $T \geq X$ are observed in the study window.  Those individuals with $T \leq X$ are referred to as left truncated because they cannot be included in this study based on the sampling window as shown in the figure \ref{fig:1}. Left truncation exaggerates the number of longer life individuals leading to a biased sample. To see this consider Figure \ref{fig:1}. The longest arrow represents a life span for an employee hired in 1950 and retiring in 2006. While this employee and any in his cohort that are still active are in the sample, others that began in 1950 but retired in 1998, for example, are not. Hence, because of the sampling window approach the longer someone continues working, the more likely they are to appear in our dataset.  We therefore see an overabundance of longer lived individuals in our data.  The presence of left truncation and the associated bias in the data must be taken into account to achieve accurate estimation of survival analysis \citep{carrion2010}.
+
  %Let $t_{i0}$ denotes the start time of the ith observation, i.e., hired time or age at %hired of ith employee, $x_{i}$ denotes the entry time of the ith observation, i.e., the %start time of study (November 1st, 2000) or age at November 1st, 2000. The start time of %the observation is maximum value between $t_{i0}$ and $x_i$, that is when $t_{i0} < x_i %$, $x_i$ is taken as start time of the ith observation in order to eliminate the left %truncation bias \citep{allison1995}. The number of failures in the $t_j$ is redefined for %left truncation. When $x_i < t_j \le t_i$, the observation is in the risk set. When %$t_{j} < x_i \le t_i$, the ith observation has not entered study yet at $t_j$ and it %cannot be considered in the risk set. When $x_i \le t_i < t_j$, it indicates the ith %observation whose failure time before $t_j$, and it cannot be considered in the risk set %at time $t_j$ neither \citep{carrion2010}.
 
 % simulation study.
@@ -231,9 +231,9 @@ Some explanatory variable values change over the course of the study. The extend
 	\label{eq:timecovar}
 	h(t,x)=h_0(t)e^{(\sum_{i=1}^{k_1}\beta_ix_i+\sum_{j=1}^{k_2}\gamma_jx_j(t))}
 \end{equation}
-where $x=(x_1, x_2, \ldots, x_{k_1}, x_1(t), x_2(t), \ldots, x_{k_2}(t))$, $h_0(t)$ is the baseline hazard occurring when $x=0$, $\beta$ and $\gamma$ are the coefficients of $x$. In order to fit this model, a modification of the partial likelihood is required and we often present the data set in a format called the {\it counting process} format in order to facilitate this calculation.  
+where $x=(x_1, x_2, \ldots, x_{k_1}, x_1(t), x_2(t), \ldots, x_{k_2}(t))$, $h_0(t)$ is the baseline hazard occurring when $x=0$, $\beta$ and $\gamma$ are the coefficients of $x$. In order to fit this model, a modification of the partial likelihood is required and we often present the data set in a format called the {\it counting process} format in order to facilitate this calculation.
 
-The current study considers four internal time dependent variables that are functions of the individuals characteristics. {\it Policy} is a a variable that indicates a specific time during the study window, part of the 2008 calendar year, when the organization offered an early retirement incentive program(ERIP); see \citep{ERIP}. 
+The current study considers four internal time dependent variables that are functions of the individuals characteristics. {\it Policy} is a a variable that indicates a specific time during the study window, part of the 2008 calendar year, when the organization offered an early retirement incentive program(ERIP); see \citep{ERIP}.
  It is time varying in the sense that it occurs at a different age for each individual in the study population and is set at 0 during the period when no program exists and 1 during the period when the program does exist. The variable {\it P85}, an indicator that an employee has amassed 85 service points, the sum of their years of service and age, and qualifies for full retirement benefits, and {\it A65}, an indicator that an employee qualifies for retirement by exceeding the age 65 threshold, are two additional time varying variables that capture important changes in individuals hazard level throughout the study.
 
 %Policy is a dummy variable across years:
@@ -247,7 +247,7 @@ The current study considers four internal time dependent variables that are func
 
 %What is counting process.   \\
 The counting process format allows software packages to handle time dependent variables, by creating multiple intervals for each employee.  Each interval is defined so that the time varying variables are constant within the interval.
-For example, for an individual that remained active until the end of the study and that achieved 85 points in December 2003, exceeded age 65 in December 2007, and received a retirement incentive in the 2008 calendar year, our study would include 5 records for the individual, November 2000 - November 2003, December 2003 - November 2007, December 2007, Jan 2008-December 2008, and Jan 2009 - December 2012, which is the end of the study. 
+For example, for an individual that remained active until the end of the study and that achieved 85 points in December 2003, exceeded age 65 in December 2007, and received a retirement incentive in the 2008 calendar year, our study would include 5 records for the individual, November 2000 - November 2003, December 2003 - November 2007, December 2007, Jan 2008-December 2008, and Jan 2009 - December 2012, which is the end of the study.
 
 Economic indicators represent another form of time dependent variables.  These are referred to as external variables because they depend upon factors external to the employee.  In models considering economic variables, monthly observations of economic indicators are aggregated at the yearly level leading to a larger number of time periods in the counting process format.  The economic variables are included at a one year lag since it is assumed that retirement and quitting decisions are made a significant time in advance of the actual event and therefore depend on older values of these indicators.  Importantly, using lagged quantities allows the model to be used for forecasting for a 12 month period since these numbers will be known at the time of forecast.
 
@@ -300,7 +300,7 @@ One of the many nuances observed within this data set is the fact that currently
 
 
 \subsection{Variable Selection and Model Choice}
-In the current study two equivalent time measurements were considered as response variables for modelling, {\it age} in years and {\it years of service}.  Because of the inclusion of time varying explanatory variables, and the need to estimate the baseline hazard for purposes of forecasting, the data must be formulated as a counting process , see Section \ref{sec:coxt}.  After some consideration, age was considered the better option for analysis because the more condensed distribution of values allows more accurate estimates of the baseline. 
+In the current study two equivalent time measurements were considered as response variables for modelling, {\it age} in years and {\it years of service}.  Because of the inclusion of time varying explanatory variables, and the need to estimate the baseline hazard for purposes of forecasting, the data must be formulated as a counting process , see Section \ref{sec:coxt}.  After some consideration, age was considered the better option for analysis because the more condensed distribution of values allows more accurate estimates of the baseline.
 
 The model selection initiated by considering gender, dept, age, and other time independent variables as well as policy, p85, and A65.  We removed non-significant variables using the criteria that p-values should be less than $.05$ and starting with the largest p-value first, i.e. backwards selection.  This continued until only statistically significant variables remained.  We also tested stratifying the baseline using occupational code, which did not improve the model. Finally we tested external time varying covariates, which capture economic factors, one at a time and noted the impact on model performance.[MAY NEED A BETTER SUMMARY OF MODELS COMPARED]
 
@@ -312,7 +312,7 @@ The model selection initiated by considering gender, dept, age, and other time i
 
 In order to evaluate the models considered in this study, the data were first split into two sets, a training set containing all of the observations from years 2000-2010 and a testing set containing events on the same individuals that occurred in calendar years 2011 and 2012. The testing (holdout) sample was included to get an accurate measure of how well the model would forecast beyond the observed data.  Because the testing data set is not included in the model fitting process, this out of sample evaluation provides a better estimate of predictive accuracy, see \citet{kuhn2013} for further discussion of this approach;
 
-All of the fitted models considered in this study are first evaluated by four statistical criteria:  Akaike’s Information Criterion (AIC), Schwartz’s Bayesian Criterion (SBC), mean absolute percentage error (MAPE) and likelihood based goodness of fit $G^2$. Ideally, the optimal model should minimize the values of AIC, SBC, MAPE, and $G^2$ when fit to the training data. In this study, the model performance on holdout dataset is considered more important than that on the training dataset.  
+All of the fitted models considered in this study are first evaluated by four statistical criteria:  Akaike’s Information Criterion (AIC), Schwartz’s Bayesian Criterion (SBC), mean absolute percentage error (MAPE) and likelihood based goodness of fit $G^2$. Ideally, the optimal model should minimize the values of AIC, SBC, MAPE, and $G^2$ when fit to the training data. In this study, the model performance on holdout dataset is considered more important than that on the training dataset.
 AIC and SBC both assess model fit by balancing a larger likelihood value with a penalty that increases with the number of variables included.  The inclusion of the penalty term diminishes the potential for over-fitting \citep{allison2010,hosmer2013}. These measures are generated automatically by the model fitting process.
 
 %C-statistics or the area under the receiver operating characteristic (ROC) curve is to test whether the probability of predicting the outcome is better than chance. It ranges from 0.5 to 1.  Models are considered acceptable when the C-statistic is higher than 0.7 \citep{hosmer2013}. C-statistics are calculated by using the predicted failure probability compared with the actual outcomes by SAS proc logistic.
@@ -327,7 +327,7 @@ P\{t_{j-1}<T<t_j|T \ge t_{j-1}\} &=1-P\{T>t_j|T \ge t_j\}\\
 \end{equation}
 where, $T_k$ is survival time of the $k^{th}$ individual , $t_j$ is a specific time value, $S_k(t) = {S_0(t_j)}^{(\sum_{i=1}^{p}\beta_ix_i)}$ is the survival function for the kth individual, $S_0(t)$ is the baseline function generated by Cox PH model, $x_i$ are the individual explanatory variables, and $\beta_i$ are the respective regression coefficients for the variables.
 
-MAPE is common measure for computing the accuracy of predictions from a forecast model and is often used to compare models since it measures relative performance \citep{chu1998}. MAPE is calculated as the average percent deviation of a forecast from the actual observation, 
+MAPE is common measure for computing the accuracy of predictions from a forecast model and is often used to compare models since it measures relative performance \citep{chu1998}. MAPE is calculated as the average percent deviation of a forecast from the actual observation,
 \begin{equation}
 \label{eq:mape}
 MAPE=\sum_{t=1}^{n}\left | \frac{y_t-\hat{y_t}}{y_t} \right |\frac{1}{n}\%
@@ -362,15 +362,15 @@ where, $y_t$ is the number of employees retired in year $t$, $n_t$ is the workfo
 % 4. split data into two ways: both training and holdout, training to build the model and holdout is to validate the model, and compare the actual vs forecasting, calculated MAPE and C statistics. \\
 %       WAY1: training (10 years)and holdout (2 years). forecasting the total number of employee leaving the organization, compared to the actual number to calculate MAPE and C statistics. compare to logistic regression and time series methods to shown survival is better.\\
 %       WAY2: random split the data into training (2/3) and holdout (1/3), using c statistics to select one best survival model.
- \subsection{Simulation on right censor and left truncation}
+ \section{Simulation Studies of Proportional Hazards Models}
 
-The goal of the proposed data analysis is to create a predictive model for retirement and other types of turnover based on a database of employees.  Section \ref{bias}, pointed out two sources of bias present in the data, left truncation and right censoring.  Because the Cox PH model is estimated using a partial likelihood that depends only upon the cases at risk at the specific failure times, estimates of regression coefficients should remain unbiased and efficient in the presence of left truncation and right censoring \citep{Harrell2002}.  What is less clear is the impact of the bias on model predictions.  In addition, a third ever-present challenge, model selection, may also impact predictions to a significant degree.  This stems from the fact that model predictions depend upon both the baseline, estimated using non-parametric methods, and the parametric estimates of the regression coefficients.  In addition, a third ever-present challenge, model selection, may also impact predictions to a significant degree.
+The goal of the proposed data analysis is to create a predictive model for retirement and other types of turnover based on a database of employees.  Section \ref{bias}, pointed out two sources of bias present in the data, left truncation and right censoring.  Because the Cox PH model is estimated using a partial likelihood that depends only upon the cases at risk at the specific failure times, estimates of regression coefficients should remain unbiased and efficient in the presence of left truncation and right censoring \citep{Harrell2002}.  What is less clear is the impact of the bias on model predictions. This stems from the fact that model predictions depend upon both the baseline, estimated using non-parametric methods, and the parametric estimates of the regression coefficients.  In addition, a third ever-present challenge, model selection, may also impact predictions to a significant degree.
 
-In order to better understand the effect of various levels of truncation and censoring on the predictions we perform 3 simulation studies based on Weibull simulated data with varying levels of these biases.
+In order to better understand the effect of various levels of truncation and censoring on the predictions we perform 3 simulation studies based on Weibull simulated data with varying amounts of bias.
 
-The basic setup in all three simulations is the same. Data sets of sizes $n =100, 200, 500,$ $1000, 2000,$ $\text{and } 4000$ were generated from a Weibull regression model which was a function of 1 explanatory variable, which we refer to as $Age$.  In the simulation, $Age$ is uniformly distributed from 22 to 70 years of age, a range that is chosen to mimic the actual distribution of worker ages observed in our sample.
+The basic setup in all three simulations is the same. Data sets of sizes $n =100, 200, 500,$ $1000, 2000,$ $\text{and } 4000$ were generated from a Weibull regression model which was a function of 1 explanatory variable, which we refer to as $Age$.  In the simulation, $Age$ is uniformly distributed from 22 to 70 years, a range that is chosen to mimic the actual distribution of worker ages observed in our sample.
 
-The hazard function baseline hazard for Weibull distribution with shape $\alpha$ and scale $\lambda$ is $h_0(t)=\alpha(\lambda)^\alpha t^{\alpha-1}$.  Extending this to a hazard from a proportional hazards regression model for $Age$, we simply multiply the hazard by the exponentiated linear predictor, which simply shifts the baseline up or down,
+The baseline hazard for Weibull distribution with shape $\alpha$ and scale $\lambda$ is $h_0(t)=\alpha(\lambda)^\alpha t^{\alpha-1}$.  Extending this to a hazard from a proportional hazards regression model for $Age$, we simply multiply by the exponentiated linear predictor shifting the baseline up or down,
 \begin{equation} \label{eq:weibull}
 \begin{split}% to allgin the equation
 h(t|Age) & =h_0(t)exp(\beta Age) \\
@@ -408,13 +408,13 @@ The survival times $T_i$ are randomly generated from the Weibull distribution wi
 %The simulation is performed on right censoring and left truncation separately, in order to observe the effects for different bias.
 %
 
-The simulations are performed using the {\tt coxreg} and {\tt phreg} functions from the {\tt R}-package {\tt eha} \citep{eha2015} for model fitting.  Function {\tt coxreg} performs a standard Cox PH regression using the partial likelihood to fit the model.  The {\tt phreg} function performs a parametric proportional hazards regression using both Weibull, Extreme value (EV) baselines.
+The simulations are performed using the {\tt coxreg} and {\tt phreg} functions from the {\tt R}-package {\tt eha} \citep{eha} for model fitting.  Function {\tt coxreg} performs a standard Cox PH regression using the partial likelihood to fit the model.  The {\tt phreg} function performs a parametric proportional hazards regression using both Weibull, Extreme value (EV) baselines.
 
 %Total predicted failure number is calculated as shown in equation \ref{eq:prob} and \ref {eq:expturnover}. The actual and predicted failure number are compared to show right censor and left truncation's impacts on the coefficient and baseline estimation .
 %For right censor and left truncation simulation, the Cox regression models are modeled by "coxreg" and "phreg" function in eha package.
 
 
-\subsection{Simulation 1: Right Censoring}
+\subsection{Simulation 1: Right Censoring} \label{rightcensor.sim1}
 
 The first study focuses on understanding the impact of right censoring, a significant effect in the turnover data analyzed later due to the many employees that remain active for the entire observation window. For each of the sample sizes above, survival times $T_i$ are simulated from the Weibull distribution as described earlier.  Four censoring times $C_j$ are defined as the first, second, third, and fourth(maximum) quartiles of the simulated sample of lifetimes and refer to 75\%, 50\%, 25\% and 0\% censoring proportions respectively. If the survival time $T_i$ of the $i_{th}$ observation is below the censoring time ($C_i$), then the lifetime $T_i$ is observed and the censoring indicator $\delta_i=1$. When the survival time $T_i$ for $i_{th}$ observation is greater than the censoring time ($C_i$), then the censoring time $C_i$ is observed and censoring indicator $\delta_i = 0$.
 
@@ -422,22 +422,25 @@ The results of 100 simulations at each combination of sample size and censoring 
 
 [Discuss Predictions]The predicted number of events are shown [What does this say about censoring effect on predictions?] in the sixth column is the total predicted failure number calculated by applying the coefficient estimates and the non-parametric baseline from Cox PH models into the dataset without considering censoring. The predicted events using censoring models are all lower than the actual total failure number, but close to the number of events after censoring.
 
-%[NOTE: Important point is that baseline hazard and predictions vary slightly with uncertainty, ??] The baseline does not include hazards or survival probability information for the long life time observation, because the baseline just captures the events before the censor time and the observation with long life time are censored in this simulation. As a result, there is no failure probability for long life time observation.
+ %[NOTE: Important point is that baseline hazard and predictions vary slightly with uncertainty, ??] The baseline does not include hazards or survival probability information for the long life time observation, because the baseline just captures the events before the censor time and the observation with long life time are censored in this simulation. As a result, there is no failure probability for long life time observation.
 
 
-\subsection{Simulation 2: Right Censoring with Staggard Entry Times}
+\subsection{Simulation 2: Right Censoring with Staggard Entry Times} \label{rightcensor:sim2}
 
 In order to more accurately capture the nuances and complexities of the data sampling scheme and understand the impact of right censoring we modify the above simulation by staggering the entry times.  Starting with the Weibull simulated failure times, we add offset factor $S$ that follows a uniform distribution from 0 to 10 and represents variation in the starting times of the employees within the study window. The event time is equal to the summation of start point and survival time: $S+T$. The censoring time is a single fixed value that ensures a fixed proportion (25\%, 50\%, and 75\%) of censored observations.  The observation and censoring indicator are then determined as in the first simulation with the survival time for an individual being $min(C,T_i+S_i) - S_i$. Because some observations start after the cutoff point (censor time) the sample sizes would vary for different censoring proportions.  To ensure constant sample size, 4000 observations are initially simulated and 400 whose start point occur before the censoring point are randomly selected.
 
-The results of the simulation are shown in Table \ref{tab:right2}. As discussed above, both a correctly parametric proportional hazards regression model with a Weibull baseline {\tt phreg} and a semi-parametric Cox regression {\tt coxreg} are fit in order to evaluate differences in efficiency. The estimation of age and $\alpha$ are all close to the true values (0.025 and 1.5) when averaged over 100 simulations.  Based on 400 events, the estimates of $\lambda$ increase from 2.694 with no censoring to over 2.8 when censoring is above 50\%.  In general, the results indicate that right censoring has little impact on coefficient estimation and that the semi-parametric estimates show similar efficiency to fully parametric estimates. However, right censoring does impact estimation of the  baseline function for the Cox PH model as shown in the 6th and 7th columns of the Table and Figure \ref{fig:rightbase}.  Panel (a) shows no censoring and the parametric baseline matches the non-parametric although as time increases and the number at risk decreases we see that non-parametric estimate deviates more strongly from the parametric fit.  Panel (b) shows 25\% censoring for 100 replications.  We see that, as the range of the data decreases, the duration of the non-parametric baseline estimate is more restricted, while the parametric fit can be extrapolated with the usual caveats.  In panel (d), the 75\% censoring level we see increased variability even with the diminished range due to the more restrictive censoring time.  Note that these results are indicative of monotonically increasing hazards and may differ if we deviate..
+The results of the simulation are shown in Table \ref{tab:right2}. As discussed above, both a correctly parametric proportional hazards regression model with a Weibull baseline {\tt phreg} and a semi-parametric Cox regression {\tt coxreg} are fit in order to evaluate differences in efficiency. The estimation of age and $\alpha$ are all close to the true values (0.025 and 1.5) when averaged over 100 simulations.  Based on 400 events, the estimates of $\lambda$ increase from 2.694 with no censoring to over 2.8 when censoring is above 50\%.  In general, the results indicate that right censoring has little impact on coefficient estimation and that the semi-parametric estimates show similar efficiency to fully parametric estimates. However, right censoring does impact estimation of the  baseline function for the Cox PH model as shown in the 6th and 7th columns of the Table and Figure \ref{fig:rightbase}.  Panel (a) shows no censoring and the parametric baseline matches the non-parametric although as time increases and the number at risk decreases we see that non-parametric estimate deviates more strongly from the parametric fit.  Panel (b) shows 25\% censoring for 100 replications.  We see that, as the range of the data decreases, the duration of the non-parametric baseline estimate is more restricted, while the parametric fit can be extrapolated with the usual caveats.  In panel (d), the 75\% censoring level, we see increased variability even with the diminished range due to the more restrictive censoring time.  Note that these results are indicative of monotonically increasing hazards and may differ if we consider other baseline distributions
 
-[Bootstrap]
+[Parametric Bootstrap distribution-look at research, also Simonoff paper
 
-Although both parametric and non-parametric baselines are overlap together by various censoring, which indicates non-parametric baseline can capture the true parametric baseline. However, due to the censoring effects of the sampling window, the duration of the non-parametric baseline decreases as the censoring proportion increases. As a result, the predicted number of events using non-parametric baseline is less than the actual failure number. However, the prediction based on the parametric baseline, which is close to 400 reflecting the fact that the parametric baseline is not limited by the baseline duration if the parameters are correctly estimated. The predictions are plotted across time by box plot and compare to the actual failure values as shown in the figure \ref{fig:rightpred}.  [Fix this: The vertical red line is the average value of censor time. The predicted number of events by "coxreg" are close to actual and the prediction by "phreg" before the censor time line. It is still close to actual after censor time line for the data with no censoring and with 25\% of censoring as shown in Figures \ref{fig:rightno} and \ref{fig:right25}, because of the long baseline duration. However, It drops down gradually after the censor time for the data with 50\% and 75\% of censoring as shown in figure \ref{fig:right50} and \ref{fig:right75}, because the baseline duration ends around censor time. This simulation clearly shows the limitation of Cox PH model with non-parametric baseline: it cannot accurately predict far beyond the duration of the longest events. Therefore, a baseline can be highly variable in the extremes leading to poor predictions. Although this simulates the real problem, the employee hiring time points are followed by uniform distribution in the real world.]
+Figure \ref{fig:rightdiff}, panels (a-d) illustrate the difference between parametric and non-parametric estimates of the baseline cumulative hazard function, $H_0(t) = -log(\hat{S}(t))$ at different time points over 100 simulated data sets.  Panel (a) indicates that without censoring, overall survival estimates including both baseline and covariates are very similar across parametric and semi-parametric approaches.  As lifetime, $t$ increases, we see increasing deviations between the two estimates.  This due both to the cumulative nature of the estimates and to the increasing variability of hazard estimation of the non-parametric baseline, the Breslow estimator,   \citep{DavHink1997,Burr1994} as the number of observations at risk diminishes over time.
+
+When censoring is introduced in panel (b) we see that the range of the x axis is restricted.  Although this varies slightly across simulations, it is clear that the non-parametric estimator cannot estimate survival probabilities beyond the maximum observed lifetime due to the lack of a parametric model for the baseline.  In the current simulation, this was dictated by the censoring time, which was set to ensure a fixed proportion of censored cases.  In real studies, such as the one introduced in Section \ref{application}, the maximum observed lifetime will be dictated by the population and the sampling window.  Panels (c) and (d) reiterate both of these factors. As the censoring level increases to 50\% and finally 75\%, the range of non parametric baseline estimate is further restricted but the accuracy improves due to the increasing concentration of observations before the censoring time.  Because all simulations had 400 observations, 75\% censoring ensures 100 events before the censoring point, which is close to 1 providing a very accurate estimate of the baseline and less dispersion than the uncensored data.  Parametric models do not suffer from limitations on the baseline estimate, a seeing advantage, but instead require careful model selection steps which introduce other challenges.
+
 
 \subsection{Left Truncation Simulation}
 
-Finally, we perform a simulation to evaluate the impact of left truncation bias on parameter estimation and prediction. Again, we begin by generating a simulated sample of employment times $T_1, \ldots, T_n$.  For each observation, $i$, a uniform random variable $U_i \sim U(0,max(T))$ is then generated and represents the simulated employee starting time. The turnover time is then $S_i = U_i+T_i$. Figure \ref{fig:trunchist} provides a histogram of the simulated population of $S_i$. Four levels of truncation are introduced by shifting the beginning of the sampling window, $L$ from 0 across the quartiles of $S$ . When the starting for $ith$ observation, $U_i$, is less than truncation time $l_i$, the observation starting point is reset to $l_i$ which is the first point that the employee is observed in the sampling window. If $U_i$, then the employee is first observed at $U_i$, which remains the starting point.  In theory, if $S_i>C$, where $C$ represents the end of the observation window, then the employee is still active at the end of the sampling window and their turnover time is censored.  In order to isolate the impact of truncation bias, no censored values were generated in this study.
+Finally, we perform a simulation to evaluate the impact of left truncation bias on parameter estimation and prediction. Again, we begin by generating a simulated sample of employment times $T_1, \ldots, T_n$.  For each observation, $i$, a uniform random variable $U_i \sim U(0,max(T))$ is then generated and represents the simulated employee starting time. The turnover time is then $S_i = U_i+T_i$. Figure \ref{fig:trunchist} provides a histogram of the simulated population of $S_i$. Four levels of truncation are introduced by shifting the beginning of the sampling window, $L$ from 0 across the quartiles of $S$ . When the starting for $ith$ observation, $U_i$, is less than truncation time $l_i$, the observation starting point is reset to $l_i$ which is the first point that the employee is observed in the sampling window. If $U_i> l_i$, then the employee is first observed at $U_i$, which remains the starting point.  If $S_i>C$, where $C$ represents the end of the observation window, then the employee is still active at the end of the sampling window and their turnover time is censored.  In order to isolate the impact of truncation bias, no censored values were generated in this study.
 
 \begin{figure}[htbp]
 	\centering
@@ -446,22 +449,28 @@ Finally, we perform a simulation to evaluate the impact of left truncation bias 
  	\label{fig:trunchist}
  \end{figure}
 
-As in the previous simulations, the population size or number of turnover events ranged from $n =100, 200, 500,$ $1000, 2000,$ $\text{and } 4000$.  For each population size, the observation window was varied to ensure 0\%, 25\%, 50\%, and 75\% truncation proportions.  The results of the simulation are shown on the right side of Table \ref{tab:rightcensor}.  Values shown represent average parameter estimates over 100 replications.  The general pattern emerges that as the truncation proportion increases for a fixed sample size or number of events the parameter estimates become slightly biased.  In the Cox PH case when the sample size is 100, the coefficient for age increases from .027 to .029 as the truncation increases from 0\% to 75\%.  As the number of events increases, to 200 and beyond, this bias goes away.
+Sample size and censoring proportions and results follow the same protocol given in Section \ref{rightcensor.sim1}.  The results of the simulation are shown on the right side of Table \ref{tab:rightcensor}.  As before, values shown represent average parameter estimates over 100 replications for the Cox model and a Weibull PH.  The general pattern suggests that as truncation proportion increases for a fixed number of events, the parameter estimates become slightly biased.  In the Cox PH case when the sample size is 100, the coefficient for age increases from .027 to .029 as the truncation increases from 0\% to 75\%.  The scale parameter for the parametric model, {\tt phreg}, also increases with truncation percentage.  For samples of size 100, with $\lambda = e^1 \approx 2.718$ the average estimate increases from $2.865$ with no censoring to $3.280$ with 75\% truncation.  Estimates for $\alpha = 1.5$ increase from 1.534 to 1.757. Such effects disappear as the number of events increase.
 
-coefficient estimates of age, and baseline parameter estimates of $\lambda$ and $\alpha$ based on a parametric proportional hazards model assuming a Weibull distribution.
+Figure \ref{fig:leftbase} compares the non-parametric estimates of the baseline from the Cox PH model with two parametric proportional hazards fits estimated using $\tt eha$ \citep{eha}.  The first parametric fit is properly specified and assumes a  Weibull distribution as in the prior simulations.  The second fit assumes that data follow a type-I extreme value distribution[check manual on this]. Unlike the simulation of Section \ref{rightcensor:sim2} the duration of non-parametric baseline estimates are not limited by the four left truncation proportions.  Both Weibull and Cox PH fits overlap with the variability of the Cox baselines showing increased variability with amount of truncation.  EV based fits all significantly underestimate the cumulative hazard indicating a potential risk of parametric modelling.  However, it is interesting to note that the EV fits converge slightly with increasing amounts of truncation.  This is a consequence of extreme-value theory and the theory of exceedances; more information about this phenomenon can be found in \ref{Coles2001}.
 
-%The last column is the total predicted number of events using non-parametric baseline by "coxreg" function.
-Similar to the earlier simulation results, the left truncation proportion and the number of events are two key factors for coefficient estimation. Table \ref{tab:rightcensor} indicates that, when the left truncation proportion is 75\% or the number of events are less than 200, the coefficients tend to be overestimated. However, increasing the number of events in the sample will mitigate the left truncation effects. For example, when the number of events is 1000 with 75\% truncation proportion, the estimate for $\beta_{age}$ is close to exact.
+Figure \ref{fig:lefttruncation} focuses on the number of
+events predicted by the models.  Here 2000 events are generated using the protocol of this section. Both parametric and nonparametric models are fit to the data and this procedure is repeated 100 times. The red vertical line is the average left truncation time across the simulations for each truncation percentage.  Using each model, the number expected number of failures is then predicted for each 1 unit time interval and compared to the observed number of failures.  Boxplots indicate the range of observed values across the 100 replications. The non-parametric Cox PH model tends to slightly overestimate the number of events in each interval suggesting that baseline estimation is not affected by the left truncation[WHY OVERESTIMATING??].  Matching parametric estimates are generated using a PH model with extreme value (EV) baseline instead of the true Weibull model.  The underestimation of the baselines by the EV fit shown in Figure \ref{fig:leftbase} lead to drastic under-predictions of the number of events.
 
-For comparison purposes, Table \ref{tab:rightcensor} also uses a parametric version of the proportional hazards model that correctly specifies the distribution of the data as Weibull. The estimates for $\alpha$ and $\lambda$ in  are all close to the true values.
+%Therefore, accurate estimation of coefficients and the baseline are two key factors impacts the perdition of the events of the Cox PH model. The simulation test shows that the Cox PH model can accurately estimates the coefficients when events number is at least 1000 even with high proportion of censor and left truncation. The baseline is another key factor to predict the number of events. The prediction will be accurate if the parametric distribution of the baseline is known or identify the correctly. Otherwise, a wrong baseline can also deteriorate the prediction. Compared to parametric baselines, a non-parametric baseline is more robust. However, it still needs enough number of events with curtain long period to get a smoothed and long baseline to predict accurately.
 
-Figure \ref{fig:leftbase} compares the non-parametric estimates of the baseline from the Cox PH model with two parametric proportional hazards fits estimated using the $\tt R-$language package $\tt eha$ \citep{Brostrom2014}.  The first parametric fit is properly specified and assumes a  Weibull distribution.  The second fit assumes that data follow a type-I extreme value distribution[check manual on this]. clearly shows the duration of non-parametric baseline are the same for four left truncation proportion. It also shows the non-parametric baselines (red lines) are overlap with parametric baseline (blue dash lines).
+[Summarize results of simulation now.]
 
-Figure \ref{fig:lefttruncation} focuses on the number of events predicted by the model.  Here 2000 events are simulated with 100 replications for various proportions of left truncation. The red vertical line is the average of left truncation time. It is slightly overestimated using "coxreg" non-parametric baseline by four left truncation proportions, because the baseline estimation is not affected by the left truncation.
+Simulations were performed to better understand the effects of truncation and censoring bias on predictions. 
 
-To further test how baseline estimation impacts on the prediction, another simulation is conducted accompanied with left truncation simulation. In the previous left truncations study, the parametric baseline using Extreme Value (EV) distribution is generated by "phreg" and predicted the number of events based on it shape and scale parameter estimation as shown in figure \ref{fig:leftbase}. Because the data is generated by Weibull distribution, the parametric baselines (green dash line) by EV are much lower than the other two baselines by all four left truncation proportions. The predicted number of events based on the EV baseline are also much lower than the actual number of events across the time as the blue box shown in the figure \ref{fig:lefttruncation}. This study shows the inaccuracy estimation of the baseline lead to poor prediction.
+In the situations considered, we found that, if sample size are large enough, in particular if they exceeded 250 events, all parameter estimates showed very little bias under both parametric and semi-parametric models.  If samples were small, regression coefficients were slightly overestimated in both types of models.  For data sets with small numbers of events due to heavy right censoring, parametric models tend to overestimate both shape and scale both leading to an underestimate of the baseline.  Although the impact of right censoring on the non-parametric baseline is not directly quantified, Figure \ref{fig:rightdiff} suggests that baseline estimates are often smaller than the parametric versions and become more variable near the maximum lifetime.  Simulations show similar impacts of left truncation on covariate and baseline effects.  A major difference is that the length of the non-parametric baseline is potentially less limited due to the lack of censoring time.  This may not be relevant in real world data, which has both effects.
 
-Therefore, accurate estimation of coefficients and the baseline are two key factors impacts the perdition of the events of the Cox PH model. The simulation test shows that the Cox PH model can accurately estimates the coefficients when events number is at least 1000 even with high proportion of censor and left truncation. The baseline is another key factor to predict the number of events. The prediction will be accurate if the parametric distribution of the baseline is known or identify the correctly. Otherwise, a wrong baseline can also deteriorate the prediction. Compared to parametric baselines, a non-parametric baseline is more robust. However, it still needs enough number of events with curtain long period to get a smoothed and long baseline to predict accurately. As a result, it is hard to accurately predict the employee turnover for a company just formed recently, or when the employee population characteristic changed, due to high proportion of censor and lack of events. Although this study has more than 50\% right censor, it still has more than 3000 events with long duration (around 50 years length).
+Consequences of simulation study on Retirement.  Although this study has more than 50\% right censoring and an unknown proportion of left truncated cases, it still has more than 1000 retirement events, many with long duration (around 50 years length). Based on the simulation, we expect the Cox model to provide very accurate estimates of covariate effects in this case and highly accurate baseline estimates for most employees, particularly those with age less than 70.  
+
+
+%
+%With respect to prediction of retirement, because the s
+%
+%As a consequence, it is hard to accurately predict the employee turnover for a company just formed recently, or when the employee population characteristic changed, due to high proportion of censor and lack of events. 
 
 
 
@@ -482,20 +491,20 @@ Therefore, accurate estimation of coefficients and the baseline are two key fact
 %
 % For left truncation simulation, the start point $U$ is generated as uniform distribution with $a=0$ and $b=max(T)$ which indicates an observation start randomly from time 0 to time $max(T)$. The stop point $S$ is $U+T$. The histogram is generated for $S$. The truncation time $L$ is set as 0, first quarter, median, and third quarter of $S$, respectively, to get 0\%, 25\%, 50\%, and 75\% truncation proportions. When start point $u_i$ for ith observation is less than truncation time $l_i$, the start point is reset as truncation time $l_i$. When start point $u_i$ for ith observation is not less than truncation time $l_i$, the start point does not change ($u_i$). In left truncation, the censor variable $\delta$ for all the observations are equal 1. For right censor and left truncation simulation,  the Cox regression models are modeled by "coxreg" and "phreg" function in eha package. The coxreg function is the regular cox regression modeling procedure to generate coefficient estimates and a non-parametric baseline.  The phreg funcation is using parametric distribution like Weibull, Extrem value (EV) to estimate the baseline. The "phreg" function performs Cox PH model and also provides a parametric baseline hazards estimation \citep{brostrom2012}. The phreg function is used to compare the non-parametric with parametric baseline and to demonstrate the prediction when the parametric baseline is not right.
 % Total predicted failure number is calculated as shown in equation \ref{eq:prob} and \ref {eq:expturnover}. The actual and predicted failure number are compared to show right censor and left truncation's impacts on the coefficient and baseline estimation .
+%
+% %accelarate model%
+% \subsection{Right censor and left truncation simulation results}
+% % 1. right censor start 0 results shows in table 1a
+% % 2. start different results shows in table 2 and figure 2 with different baseline and prediction number
+% %    younger company has shorter baseline hard to predict beyond the baseline max time.
+% % 3. left truncation simulation results shows in table 1 and figure 4&5
+% % 4. shows the baseline using wrong parametric distribution (wrong) what is going on.
+% The right censoring simulation results are shown in the left part of Table \ref{tab:rightcensor} which all the observations start at the same time 0. The events in the second column of the table are the actual total failure events simulated without considering censoring, which is $n=100, 200, 500, 1000, 2000, \text{and } 4000$. The number of events in the dataset applying to the Cox model are reduced due to the right censoring, which is equal to $events=\sum_{i=0}^{n}{\delta_i}$. The values in the other column are the average value of 100 replications for Cox PH model coefficient and baseline parameter estimates based on Weibull distribution using phreg. The simulation results show censoring proportion and the number of events are two influential factors for the coefficient estimation. The model overestimates the coefficients of age, $\lambda, \text{ and } \alpha$, when the dataset has high proportion of censoring. For example, when 75\% of the data are censored with only 25 events, the estimates for three parameters are 0.028, 4.043, and 1.564, respectively, which are the highest among all the estimates. As the event number increasing, the estimation is approaching to the actual value. For example, the estimation of age, $\lambda, \text{ and } \alpha$ are close to 0.025, 2.7, and 1.5, respectively, after the number of event is at least 500.
+% The predicted events in the sixth column is the total predicted failure number calculated by applying the coefficient estimates and the non-parametric baseline from Cox PH models into the dataset without considering censoring. The predicted events using censoring models are all lower than the actual total failure number, but close to the number of events after censoring. For example, the number of predicted events is 24.84 when using the estimates of Cox PH model with 75\% censoring to calculate the dataset with 100 events, which is close to 25. The prediction is less than the actual dataset, because the baseline is lack of information for the events after censored time. The baseline does not include hazards or survival probability information for the long life time observation, because the baseline just captures the events before the censor time and the observation with long life time are censored in this simulation. As a result, there is no failure probability for long life time observation.
+%
 
- %accelarate model%
- \subsection{Right censor and left truncation simulation results}
- % 1. right censor start 0 results shows in table 1a
- % 2. start different results shows in table 2 and figure 2 with different baseline and prediction number
- %    younger company has shorter baseline hard to predict beyond the baseline max time.
- % 3. left truncation simulation results shows in table 1 and figure 4&5
- % 4. shows the baseline using wrong parametric distribution (wrong) what is going on.
- The right censoring simulation results are shown in the left part of Table \ref{tab:rightcensor} which all the observations start at the same time 0. The events in the second column of the table are the actual total failure events simulated without considering censoring, which is $n=100, 200, 500, 1000, 2000, \text{and } 4000$. The number of events in the dataset applying to the Cox model are reduced due to the right censoring, which is equal to $events=\sum_{i=0}^{n}{\delta_i}$. The values in the other column are the average value of 100 replications for Cox PH model coefficient and baseline parameter estimates based on Weibull distribution using phreg. The simulation results show censoring proportion and the number of events are two influential factors for the coefficient estimation. The model overestimates the coefficients of age, $\lambda, \text{ and } \alpha$, when the dataset has high proportion of censoring. For example, when 75\% of the data are censored with only 25 events, the estimates for three parameters are 0.028, 4.043, and 1.564, respectively, which are the highest among all the estimates. As the event number increasing, the estimation is approaching to the actual value. For example, the estimation of age, $\lambda, \text{ and } \alpha$ are close to 0.025, 2.7, and 1.5, respectively, after the number of event is at least 500.
- The predicted events in the sixth column is the total predicted failure number calculated by applying the coefficient estimates and the non-parametric baseline from Cox PH models into the dataset without considering censoring. The predicted events using censoring models are all lower than the actual total failure number, but close to the number of events after censoring. For example, the number of predicted events is 24.84 when using the estimates of Cox PH model with 75\% censoring to calculate the dataset with 100 events, which is close to 25. The prediction is less than the actual dataset, because the baseline is lack of information for the events after censored time. The baseline does not include hazards or survival probability information for the long life time observation, because the baseline just captures the events before the censor time and the observation with long life time are censored in this simulation. As a result, there is no failure probability for long life time observation.
- 
- 
- 
- \begin{table}[]
+
+ \begin{table}[!htbp]
  	\renewcommand{\arraystretch}{1.5}
  	\scriptsize %table fond
  	\centering
@@ -533,7 +542,7 @@ Therefore, accurate estimation of coefficients and the baseline are two key fact
  	\end{tabular}
  	\label{tab:rightcensor}%
  \end{table}
- 
+
 
  % Table generated by Excel2LaTeX from sheet 'Sheet2'
  \begin{table}[htbp]
@@ -554,8 +563,8 @@ Therefore, accurate estimation of coefficients and the baseline are two key fact
  	\end{tabular}%
  	\label{tab:right2}%
  \end{table}%
- 
- 
+
+
  \begin{figure}[h!]
  	\centering
  	\subfloat[No right censor ]{\label{fig:baseno}\includegraphics[width=3in]{base0.png}}
@@ -568,20 +577,27 @@ Therefore, accurate estimation of coefficients and the baseline are two key fact
  	\caption{Baseline comparison by various censoring}
  	\label{fig:rightbase}
  \end{figure}
- 
- \begin{figure}[h!]
+
+\begin{figure}[h!]
  	\centering
- 	\subfloat[No right censor ]{\label{fig:rightno}\includegraphics[width=3in]{right0.png}}
- 	\quad
- 	\subfloat[25\% right censor]{\label{fig:right25}\includegraphics[width=3in]{right25.png}}
- 	\quad
- 	\subfloat[50\% right censor ]{\label{fig:right50}\includegraphics[width=3in]{right50.png}}
- 	\quad
- 	\subfloat[75\% right censor]{\label{fig:right75}\includegraphics[width=3in]{right75.png}}
- 	\caption{Right censor simulation results: actual vs. predicted failure number}
- 	\label{fig:rightpred}
- \end{figure}
- 
+\label{fig:rightdiff}\includegraphics[width=4in]{Baseline_rightcensor}
+\caption{Differences in estimates of baseline cumulative hazard functions, parametric - non-parametric, for 4 levels of censoring}
+% 	\label{fig:rightpred}
+\end{figure}
+
+ %\begin{figure}[h!]
+% 	\centering
+% 	\subfloat[No right censor ]{\label{fig:rightno}\includegraphics[width=3in]{right0.png}}
+% 	\quad
+% 	\subfloat[25\% right censor]{\label{fig:right25}\includegraphics[width=3in]{right25.png}}
+% 	\quad
+% 	\subfloat[50\% right censor ]{\label{fig:right50}\includegraphics[width=3in]{right50.png}}
+% 	\quad
+% 	\subfloat[75\% right censor]{\label{fig:right75}\includegraphics[width=3in]{right75.png}}
+% 	\caption{Right censor simulation results: actual vs. predicted failure number}
+% 	\label{fig:rightpred}
+% \end{figure}
+
  % % % % % % % % % % % % % % % % % % % % % % % % %
  % % % %Left truncation result % % % % % % % % % %
  % % % % % % % % % % % % % % % % % % % % % % % % %
@@ -594,10 +610,10 @@ Therefore, accurate estimation of coefficients and the baseline are two key fact
  	\subfloat[50\% left truncation]{\label{fig:ev50}\includegraphics[width=3in]{EV50.png}}
  	\quad
  	\subfloat[75\% left truncation]{\label{fig:ev75}\includegraphics[width=3in]{EV75.png}}
- 	\caption{Left truncation simulation results: Baseline Comparison}
+ 	\caption{Left truncation simulation predictions. Comparison of Actual vs. Cox PH and Parametric PH with EV baseline.}
  	\label{fig:leftbase}
  \end{figure}
- 
+
  \begin{figure}[h!]
  	\centering
  	\subfloat[No left truncation]{\label{fig:leftno}\includegraphics[width=3in]{Predev0.png}}
@@ -610,8 +626,8 @@ Therefore, accurate estimation of coefficients and the baseline are two key fact
  	\caption{Left truncation simulation results: actual vs. predicted failure number}
  	\label{fig:lefttruncation}
  \end{figure}
- 
- 
+
+
  % 1- include the name of the package in the Results sections.
  % 2 - redo with results averaged over 100 data sets.
  % 3 - explain concerns about censoring in our data.  About 50 % censored.  Large amount of truncation.
@@ -619,9 +635,8 @@ Therefore, accurate estimation of coefficients and the baseline are two key fact
  % 5) Figures and discussion of coefficients and baseline estimates and impact on predictions.
  % 6) Problems with PH in predictive modelling.  Truncation needs PH (is there another method)
  %
- 
+
  % Table generated by Excel2LaTeX from sheet 'Sheet6' %accelarate model%
-\section{Results}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%% Commentted on 12/14/2015%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -773,11 +788,12 @@ Therefore, accurate estimation of coefficients and the baseline are two key fact
 %
 %% Table generated by Excel2LaTeX from sheet 'Sheet6'
 
-
-
-\subsection{Data pattern/Descriptive Analysis}
+\section{Results} \label{application}
 
 The construction of a predictive model for retirement involves consideration of several factors. Among the variables available for analysis we must choose the set that offers the maximum predictive power, i.e. a model that includes variables that provide the best possible predictions on out of sample testing data sets and not simply on data used to train the model.  We must also evaluate potential strengths and weaknesses of the baseline hazard estimate and its impact on prediction accuracy.  Finally, it is useful to also understand the impact of various predictors on retirement age.
+
+
+\subsection{Descriptive Analysis}
 
 As described in Section \ref{data.desc}, the current data provides five demographic and career history variables: payroll(hourly, weekly, or monthly payroll), gender(M,F), division(ten divisions), occupational codes(crafts, engineers, general administrative, laborers, managers, administrative, operators, scientists, technicians), age at hire, and years of service at hire. Table \ref{tab:descriptive} provides marginal counts of the number of workers in the sample within each category.  From that we see that among occupation codes there are four large categories (C,E,M,\& P)  with over one thousand employees observed throughout the data sample, four medium sized groups with 500-700 employees (G,L,R \& T), and one small group, S, with 208 employees.  Payroll data shows that the largest group is paid monthly, followed by hourly, and weekly.  In terms of gender, approximately 72\% of employees are male. Finally, divisions, while not fixed over the life of the employee, are distributed similarly to occupational codes with four larger groups and a number of smaller groups.
 
@@ -1135,12 +1151,12 @@ The prediction for the employee retirement is shown in the figure \ref{fig:predi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Voluntary quit model without external variables}
 
-I. dependent variable are YCSH, because age is not able to predict well. Why plot YCSH by vq and age by vq to discribe why.  
+I. dependent variable are YCSH, because age is not able to predict well. Why plot YCSH by vq and age by vq to discribe why.
 one employee quit with 67 years old and less than 85 points. all quit before 65 years.
-II. shorten the length of risk set. how to shorten the risk set. 
+II. shorten the length of risk set. how to shorten the risk set.
 iii. model comparison. (survival model, time seris model, and logsitic regression model)
 
-Voluntary quitting model is built based on the same variables in the retirement model except {\it P85} and {\it A65}. The difficulty for building the quitting model is that we only have around 600 out of 8000 employees quitting during the 10-year study window. This causes the high proportion of censor data. Also, the model cannot generate a smooth baseline to achieve a good forecasting model (\ref{tab:vqmodelstats}) when age is the dependent variable, because employees quit at a wide range of ages (20 to 64) as shown in figure \ref{fig:agevq}. To better forecast quitting, we use years of service (YCS) as dependent variable, because usually an employee quits at first 10 years of service as shown in figure \ref{fig:ycsvq}. Since an employee will not quit if their are eligible for pension, which are 65 years of service and 85 points. We remove those employees from the risk set when they meet either one of requirements.   
+Voluntary quitting model is built based on the same variables in the retirement model except {\it P85} and {\it A65}. The difficulty for building the quitting model is that we only have around 600 out of 8000 employees quitting during the 10-year study window. This causes the high proportion of censor data. Also, the model cannot generate a smooth baseline to achieve a good forecasting model (\ref{tab:vqmodelstats}) when age is the dependent variable, because employees quit at a wide range of ages (20 to 64) as shown in figure \ref{fig:agevq}. To better forecast quitting, we use years of service (YCS) as dependent variable, because usually an employee quits at first 10 years of service as shown in figure \ref{fig:ycsvq}. Since an employee will not quit if their are eligible for pension, which are 65 years of service and 85 points. We remove those employees from the risk set when they meet either one of requirements.
 
 
 \begin{figure}[h!]
@@ -1236,22 +1252,22 @@ Voluntary quitting model is built based on the same variables in the retirement 
 Among all the models shown in table \ref{tab:vqmodelstats}, a survival model is selected with {\it YCS} as dependent variable and reduced risk set, and with {\it division}, {\it COCS}, {\it Age at credited}, and {\it policy} as explanatory variables. Logistic regression model also performs well as the survival model, as two models have similar MAPE and $G_2$ values. One reason for the close performance is that the logistic regression is the discrete model of Cox PH model.
 
 
-According to our model, voluntary quitting is influenced by an employee's age at their years of service started. The coefficient estimate for age is -0.025. As the reference age is 35.44, this means that the hazard ratio for quitting of an employee that started working at age 35.44 is $exp(-.025)=.975$ indicating a 2.5\% drop in hazard for each additional year later that an employee started. The employee's survival probability at any time, $t$, can be computed as $S(t)^{1.025} = (S(t)^{e^{0.025}})$ when age is one year below 35.44,  where $S(t)$ is the baseline survival probability for a reference employee of average age at the time of starting their pension. Moving in the other direction, employee's survival probability is $S(t)^{0.975}=(S(t)^{e^{-0.025}})$ for a one year increase beyond 35.44 in the employee's starting age. Together, this implies that at any given voluntary quitting age, the employee who starts earlier than 35.44 years old is more likely to quit than an equivalent employee who starts working at an older age. 
+According to our model, voluntary quitting is influenced by an employee's age at their years of service started. The coefficient estimate for age is -0.025. As the reference age is 35.44, this means that the hazard ratio for quitting of an employee that started working at age 35.44 is $exp(-.025)=.975$ indicating a 2.5\% drop in hazard for each additional year later that an employee started. The employee's survival probability at any time, $t$, can be computed as $S(t)^{1.025} = (S(t)^{e^{0.025}})$ when age is one year below 35.44,  where $S(t)$ is the baseline survival probability for a reference employee of average age at the time of starting their pension. Moving in the other direction, employee's survival probability is $S(t)^{0.975}=(S(t)^{e^{-0.025}})$ for a one year increase beyond 35.44 in the employee's starting age. Together, this implies that at any given voluntary quitting age, the employee who starts earlier than 35.44 years old is more likely to quit than an equivalent employee who starts working at an older age.
 
 The temporary early retirement buyout option also impact on employee's quitting behavior, as {\it policy} also significant in the model.  The coefficient for this indicator was 1.111 leading to a hazard ratio of $e^{.1.111} = 3.04$ which indicates that, on average, an individuals hazard of quitting increased by almost 3 times during this period. This indicates that employees are more likely to quit during this specific period.
 
-The {\it division} variable was a significant predictor.  For analysis, the baseline level was chosen arbitrarily as division 6 so that it's hazard rate is determined by the baseline.  Relative to this baseline, division 7 has a similar hazard ratio of quitting with division 6, indicating the employees have the similar quitting behavior with division 6. Conversely, the other divisions all have negative coefficients with hazard ratios less than 1 indicating that individuals within these groups have lower the hazard of group 6. 
+The {\it division} variable was a significant predictor.  For analysis, the baseline level was chosen arbitrarily as division 6 so that it's hazard rate is determined by the baseline.  Relative to this baseline, division 7 has a similar hazard ratio of quitting with division 6, indicating the employees have the similar quitting behavior with division 6. Conversely, the other divisions all have negative coefficients with hazard ratios less than 1 indicating that individuals within these groups have lower the hazard of group 6.
 
 The {\it COCS} variable was another significant predictor.  For analysis, the baseline level was engineer for this variable so that it's hazard rate is determined by the baseline. Relative to this baseline, all the other divisions have negative coefficients with hazard ratios less than 1, especially for Crafts group with -1.165 of coefficient estimation and 0.312 ($exp(-0.165)$) of hazard ratio, indicating that individuals within these groups have lower the hazard of engineer group. In other words, engineers are more likely to quit than the other job categories, because it may be easier for engineer to find a better job in the job market.
 
-In general, differences in quitting rates could be easily caused by differences in age demographics, departmental and job function, departmental leadership, or human resource management program.
+In general, differences in quitting rates could be caused by differences in age demographics, leadership, departmental and job function, or departmental leadership.
 
-The baseline survival function and log hazard function are shown in figure \ref{fig:vqbasepred}. The survival probability starts to steeply decease from 0  to 10 years of service. By years of service at 10 the survival probability has decreased to close to 0.25, which indicates that 75\% of employees quitting at first 10 years of service.  The slope of survival function decreases flatly to 0 from 10 t0 30 years of service.  Accompanying the survival function is the log of the cumulative hazard ratio.  Again, the steep rise in the cumulative hazard between years of service at 0 to 10 indicates the increased quitting activity during this period.  After this the cumulative hazard levels off indicating a slow drop in the hazard rate at these future points.
+The baseline survival function and log hazard function are shown in figure \ref{fig:vqbasepred}. The survival probability starts to steeply decease from 0  to 10 years of service. By years of service at 10 the survival probability has decreased to close to 0.25, which indicates that 75\% of employees quitting at first 10 years of service.  The slope of survival function decreases flatly to 0 from 10 t0 30 years of service.  Accompanying the survival function is the log of the cumulative hazard ratio.  Again, the steep rise in the cumulative hazard between years of service at 0 to 10 indicates the increased quitting activity during this period.  After this the cumulative hazard levels off indicating a drop in the hazard rate at these future points.
 
 
 \subsubsection{Voluntary quit model with external variables}
 i. tested which variable does significantly impact on employee voluntary quit.
- Because voluntary quitting is more sensitive affected by macro economics, we further examined the external variables using the counting process model with yearly interval based on calendar year to test their effects on voluntary quitting. This model has the similar parameter estimation as the selected model as shown in the right part of the table \ref{tab:vqparaest}. We found one indicators are statistically significant and also improve the model forecasting due to lower MAPE and $G^2$ than the values of selected model without economic indicator, which is Real Dividend as shown in table \ref{tab:vqEI}. According to the estimates of table \ref{tab:EI}, Real dividend is the most important factor among all the indicators as it has lowest $G^2$ and MAPE. The test results show that it has strong impact on the quitting behaviors. As shown in figure \ref{fig:vqrealdividend}, the fluctuation of voluntary quitting plot is corresponding with 1 year lag of the trend of Real dividend.
+
 
 
 \begin{table}[]
@@ -1297,9 +1313,9 @@ i. tested which variable does significantly impact on employee voluntary quit.
 \section{Conclusions and Managerial Implications}
 Conclusions and Managerial Implications
 
-1) We were construct an individual level retirement model and quitting model for current and past workers that accurately predicted yearly retirement levels.
+1) We were construct an individual level retirement model for current and past workers that accurately predicted yearly retirement levels.
 
-2) A semi-parametric cox proportional hazards model was used to model age at retirement and quitting.  The model investigated demographic, organizational, and macroeconomic factors that might impact the retirement decision.
+2) A semi-parametric cox proportional hazards model was used to model age at retirement.  The model investigated demographic, organizational, and macroeconomic factors that might impact the retirement decision.
 
 3) Factors that had the strongest influence included years of service, whether or not an ERP was in effect, whether or not the individual exceeded the number of points required for full retirement benefits.  The most valuable external factor impacting retirement decisions is the Real Earnings as defined by the bureau of labor statistics.
 
