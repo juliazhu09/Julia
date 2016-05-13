@@ -12,32 +12,31 @@
 % 1. thesis/dissertation
 % 2. monochrome
 % 3. all options provided by the report class
-\documentclass[dissertation,letterpaper,12pt]{utthesis} % thesis, one side
-\setcounter{secnumdepth}{5}
+\documentclass[thesis,letterpaper,12pt]{utthesis} % thesis, one side
 % some alternatives are:
-%\documentclass[dissertation,monochrome,letterpaper,12pt]{utthesis} %thesis, one side, monochrome text
-%\documentclass[dissertation,twoside,letterpaper,12pt]{utthesis} % thesis, two side
-%\documentclass[dissertation,monochrome,twoside,letterpaper,12pt]{utthesis} % thesis, two side, monochrome text
+%\documentclass[thesis,monochrome,letterpaper,12pt]{utthesis} %thesis, one side, monochrome text
+%\documentclass[thesis,twoside,letterpaper,12pt]{utthesis} % thesis, two side
+%\documentclass[thesis,monochrome,twoside,letterpaper,12pt]{utthesis} % thesis, two side, monochrome text
 % for a dissertation, replace the thesis option by dissertation:
 % \documentclass[dissertation,letterpaper,12pt]{utthesis} . . .
 \renewcommand{\baselinestretch}{1.5} 	 % line Spacing
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TO DO: FILL IN YOUR INFORMATION BELOW - READ THIS SECTION CAREFULLY
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{Employee Turnover Forecast and Strategy Analysis}	       % title of thesis/dissertation
-\author{Xiaojuan Zhu}                % author's name
-\copyrightYear{2016}            % copyright year of your thesis/dissertation
+\title{My Thesis or Dissertation Title}	       % title of thesis/dissertation
+\author{My Name}                % author's name
+\copyrightYear{2012}            % copyright year of your thesis/dissertation
 \graduationMonth{May}           % month of graduation of your thesis/dissertation
-\majorProfessor{Dr. Rapinder Sawhney}	    % advisor's name
-\keywords{Turnover forecast, time series, surival analysis, operation research}	% keywords (optional) separated by commas - these are used in the PDF file properties
+\majorProfessor{My Advisor}	    % advisor's name
+\keywords{List, Of, Keywords}	% keywords (optional) separated by commas - these are used in the PDF file properties
 \viceProvost{Carolyn R. Hodges} % vice provost name
-\major{Industrial Engineering}	% major: Mechanical Engineering, Aerospace Engineering, Mathematics...
-\degree{Doctor of Philosophy}	    % degree: Doctor of Philosophy, Master of Science, Master of Engineering...
+\major{Mechanical Engineering}	% major: Mechanical Engineering, Aerospace Engineering, Mathematics...
+\degree{Master of Science}	    % degree: Doctor of Philosophy, Master of Science, Master of Engineering...
 \college{Engineering}           % college
-\dept{Indstrial \& Systems Engineering}	% department
+\dept{Mechanical, Aerospace and Biomedical Engineering}	% department
 \university{The University  of Tennessee, Knoxville}	% school name
 % THIS TEMPLATE ACCOMMODATES UP TO 5 COMMITTEE MEMBERS - ENTER ONLY THE NAMES OF THE MEMBERS ON YOUR COMMITTEE
-\numberOfCommitteeMembers{3} % enter the number of committee members
+\numberOfCommitteeMembers{2} % enter the number of committee members
 \committeeMemberA {Committee Member 1}	% name of first committee member
 \committeeMemberB {Committee Member 2}	% name of second committee member
 \committeeMemberC {Committee Member 3}	% ... you get the trend!
@@ -57,94 +56,10 @@
 \usepackage{relsize}                    % font sizing hierarchy
 \usepackage{booktabs}                   % professional looking tables
 \usepackage[config, labelfont={bf}]{caption,subfig} % nice sub figures
-\usepackage{mathrsfs}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{threeparttable}	%footnote at bottom
-\usepackage{array}
-\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
-\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
-\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
-\usepackage{multirow}				% graphics package
-\setcounter{secnumdepth}{4}                   % additional math scripts
-\usepackage{listings} 
-\usepackage{caption}
-\usepackage{color}
-\usepackage{pdflscape}
-\definecolor{mygreen}{rgb}{0,0.6,0}
-\definecolor{mygray}{rgb}{0.5,0.5,0.5}
-\definecolor{mymauve}{rgb}{0.58,0,0.82}
-\lstset{ %
-	backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
-	basicstyle=\footnotesize,        % the size of the fonts that are used for the code
-	breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
-	breaklines=true,                 % sets automatic line breaking
-	captionpos=b,                    % sets the caption-position to bottom
-	commentstyle=\color{mygreen},    % comment style
-	deletekeywords={...},            % if you want to delete keywords from the given language
-	escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
-	extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
-	%frame=single,                    % adds a frame around the code
-	keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
-	keywordstyle=\color{blue},       % keyword style
-	language=Octave,                 % the language of the code
-	morekeywords={*,...},            % if you want to add more keywords to the set
-	numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
-	numbersep=5pt,                   % how far the line-numbers are from the code
-	numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
-	rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
-	showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
-	showstringspaces=false,          % underline spaces within strings only
-	showtabs=false,                  % show tabs within strings adding particular underscores
-	stepnumber=2,                    % the step between two line-numbers. If it's 1, each line will be numbered
-	stringstyle=\color{mymauve},     % string literal style
-	tabsize=2,                       % sets default tabsize to 2 spaces
-	title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
-}
-%\usepackage{mathtools}
-\usepackage{sectsty}						% for centering chapter titles
-\usepackage{lipsum}
-\usepackage{pdflscape}
-\usepackage{afterpage}
-\usepackage{capt-of}% or use the larger `caption` package
-\chapterfont{\centering}
-\usepackage{array}
-\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}} % how to wrap text
-\usepackage{multirow}					% for multiple mergerd rows
-\usepackage{lscape}						% for landsacpe pages in between
-\usepackage{color}						% for font color changes
-%%% PACKAGES THAT ARE PRELOADED WITH THE CLASS ARE: amsmath,amsthm,amssymb,setspace,geometry,hyperref,and color
-
-\usepackage{pdflscape}
-\usepackage{fancyhdr}
-\fancypagestyle{mylandscape}{% source: http://tex.stackexchange.com/questions/78484/landscape-and-page-numbers-with-pdfpages
-	\fancyhf{}% Clear header/footer
-	\fancyfoot{% Footer
-		\makebox[\textwidth][r]{% Right
-			\rlap{\hspace{\footskip}% Push out of margin by \footskip
-				\smash{% Remove vertical height
-					\raisebox{\dimexpr.5\baselineskip+\footskip+.66\textheight}{% Raise vertically
-						\rotatebox{90}{\thepage}}}}}}% Rotate counter-clockwise
-	\renewcommand{\headrulewidth}{0pt}% No header rule
-	\renewcommand{\footrulewidth}{0pt}% No footer rule
-}
-\usepackage{everypage}
-\newcommand{\Lpagenumber}{\ifdim\textwidth=\linewidth\else\bgroup
-	\dimendef\margin=0
-	\ifodd\value{page}\margin=\oddsidemargin
-	\else\margin=\evensidemargin
-	\fi
-	\raisebox{\dimexpr -\topmargin-\headheight-\headsep-0.5\linewidth}[0pt][0pt]{%
-		\rlap{\hspace{\dimexpr \margin+\textheight+\footskip}%
-			\llap{\rotatebox{90}{\thepage}}}}%
-	\egroup\fi}
-\AddEverypageHook{\Lpagenumber}%
-
-
+\usepackage{mathrsfs}                   % additional math scripts
 %%% PACKAGES THAT ARE PRELOADED WITH THE CLASS ARE: amsmath,amsthm,amssymb,setspace,geometry,hyperref,and color
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
-    \lstset{language=R}      
     \pagenumbering{alph} % this is needed to clear certain issues with the hyperref package
     %
     \makeApprovalPage % make the approval page - this is the page that needs to be signed & returned to the thesis/dissertation consultant
@@ -165,8 +80,8 @@
     \addToPDFBookmarks{1}{Acknowledgements}{c} % add a pdf bookmark to the acknowledgements page
     \include{front-matter/acknowledgements} % include the acknowledgements
     %
-    %\addToPDFBookmarks{1}{Quote}{d} % add a pdf bookmark to the quotation page
-    %\include{front-matter/quote} % include a quote
+    \addToPDFBookmarks{1}{Quote}{d} % add a pdf bookmark to the quotation page
+    \include{front-matter/quote} % include a quote
     %
     \addToPDFBookmarks{1}{Abstract}{e} % add a pdf bookmark to the abstract page
     \include{front-matter/abstract} % your abstract
@@ -174,15 +89,15 @@
     \addToPDFBookmarks{0}{Table of Contents}{f}
     \tableofcontents % generate a table of contents
     %
-    %\addToTOC{List of Tables} % this will add the list of tables to the Table of Contents (TOC)
+    \addToTOC{List of Tables} % this will add the list of tables to the Table of Contents (TOC)
     \listoftables % generate a list of tables
     %
-    %\addToTOC{List of Figures} % this will add the list of figures to the Table of Contents (TOC)
+    \addToTOC{List of Figures} % this will add the list of figures to the Table of Contents (TOC)
     \listoffigures % generate a list of figures
     %
-    %\makenomenclature % OPTIONAL
-    %\addToPDFBookmarks{0}{Nomenclature}{g} % OPTIONAL
-    %\printnomenclature[1.25in] % OPTIONAL
+    \makenomenclature % OPTIONAL
+    \addToPDFBookmarks{0}{Nomenclature}{g} % OPTIONAL
+    \printnomenclature[1.25in] % OPTIONAL
     %
     \newpage
     \pagenumbering{arabic}
@@ -195,7 +110,6 @@
     \include{chapters/chapter-2}
     \include{chapters/chapter-3}
     \include{chapters/chapter-4}
-    \include{chapters/chapter-5}
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % BIBLIOGRAPHY
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
