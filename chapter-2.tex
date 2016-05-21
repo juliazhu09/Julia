@@ -320,13 +320,13 @@ library (normwhn.test)
 ## X is the lag term of CLI.
 ## Intervention is the external variable impact: yes=1 and no=0.
 ## Build model ## Load dataset
-Turnover = read.xls (“turnover_data_in_excel.xls”)
+Turnover <-read.xls (“turnover_data_in_excel.xls”)
 ## IMPORTANT: Some R codes in dynamic regression may not handle fancy intervention analysis.
-Turnover.Model = dynlm (Turnover ~ Trend + Seasonality + L(CLI, X) + Intervention) 
+Turnover.Model <- dynlm (Turnover ~ Trend + Seasonality + L(CLI, X) + Intervention) 
 ## Model summary
 summary ( Turnover.Model)
 ## Calculate residuals
-Residual = resid (Turnover.Model)
+Residual <- resid (Turnover.Model)
 ## Normality test on residuals
 normality.test1 (Residual)
 ## White noise test on residuals
